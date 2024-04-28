@@ -1,0 +1,47 @@
+
+.info_main_div {
+    margin-top: 10%;
+}
+
+/* button with callout */
+.info_button {
+    background-color: var(--primary);
+    border: none;
+    border-radius: 20px;
+    padding: 16px;
+    position: relative;
+}
+
+/* info 'i' icon svg */
+.info_icon {
+    width: 40px;
+    height: auto;
+}
+
+.info_button::after {
+    display: block; width: 0; 
+    content: "";
+    border: 15px solid transparent;
+    border-left-color: var(--primary);
+    border-right: 0;
+    position: absolute; 
+    right: -14px; top: calc(50% - 14px);
+}
+
+/* The rectangle that pops up */
+.popup-main-div{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary);
+    margin-top: 10%;
+    border-radius: 10px;
+}
+
+
+.prompts-header-main-div{
+    display: flex;
+}
+
+.header{
+    flex: 1;
+}
