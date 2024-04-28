@@ -37,11 +37,31 @@
     border-radius: 10px;
 }
 
-
+/* Header + 'i' icon */
 .prompts-header-main-div{
     display: flex;
+    align-items: center;
 }
 
 .header{
+    padding-left: 25px;
+    color: white;
     flex: 1;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.prompts-main-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.prompt-div{
+    font-size: 15px;
+    margin: 0px 25px;
+    padding: 3%;
+    background-color: var(--thegrey);
+    text-align: center;
+    border-radius: 10px;
 }

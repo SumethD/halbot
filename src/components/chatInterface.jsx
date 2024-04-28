@@ -11,30 +11,59 @@ const ChatInterface = () => {
   const sliderRef = useRef(null);
 
   useEffect(() => {
+    // TODO: the scroll gets rid of previous chat history
     // Scroll to bottom of the chat history when chat history updates
     if (sliderRef.current) {
       sliderRef.current.slickGoTo(chatHistory.length);
     }
-  }, [chatHistory]);
+    console.log("input message updated:", inputMessage)
+    
+  }, [chatHistory,inputMessage]);
 
   const handleInputChange = (e) => {
     setInputMessage(e.target.value);
   };
 
   const handleSendMessage = async () => {
+    console.log("reched dumb")
+    console.log("input message: ", inputMessage)
     if (inputMessage.trim() !== '') {
       // Send user message to Lex
+      console.log("reched dum")
+
       const response = await sendMessageToLex(inputMessage);
       // Update chat history with user message and Lex response
+      console.log("reched dum")
+
       setChatHistory([...chatHistory, { user: inputMessage, bot: response['message'] }]);
       setInputMessage('');
+      console.log("reched dum")
+
     }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
+  // connection from pop up component
+  const updateInputMessage = async (message) => {
+    // First, update the input message
+    await setInputMessage(message);
+    console.log("from update input message: ", inputMessage)
+
+    // Then, call handleSendMessage after inputMessage state has been updated
+    handleSendMessage();
   };
 
 
   return (
     <div className='chat-main-div'>
-      <PromptsPopUp></PromptsPopUp>
+      <PromptsPopUp
+        updateInputMessage={updateInputMessage}
+      ></PromptsPopUp>
       <div className="chat-interface">
         <div className="header-box">
           HAL BOT
@@ -65,6 +94,7 @@ const ChatInterface = () => {
               onChange={handleInputChange}
               placeholder="Type your message..."
               className="input-field"
+              onKeyDown={handleKeyPress}
             />
             <button onClick={handleSendMessage} className="send-button">Send</button>
           </div>
