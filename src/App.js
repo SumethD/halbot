@@ -1,6 +1,5 @@
 import React from 'react';
 import ChatInterface from './components/chatInterface';
-import "dotenv/config";
 
 const App = () => {
   return (
