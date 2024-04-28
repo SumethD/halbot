@@ -87,6 +87,7 @@
     background-color: #0056b3;
 }
 .header-box {
+    font-size: 32px;
     background-color: var(--primary);
     color: #fff;
     padding: 20px;

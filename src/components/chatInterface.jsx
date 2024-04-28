@@ -37,7 +37,7 @@ const ChatInterface = () => {
       <PromptsPopUp></PromptsPopUp>
       <div className="chat-interface">
         <div className="header-box">
-          <h1>HAL BOT</h1>
+          HAL BOT
         </div>
         <Slider
           ref={sliderRef}
