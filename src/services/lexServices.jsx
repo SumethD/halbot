@@ -1,17 +1,17 @@
-const AWS = require('aws-sdk');
+const AWS = import('aws-sdk');
 
 AWS.config.update({
-  region: 'YOUR_REGION',
-  accessKeyId: 'YOUR_ACCESS_KEY_ID',
-  secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
+  region: 'ap-southeast-2',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
 const lexruntime = new AWS.LexRuntime();
 
 export const sendMessageToLex = async (inputText) => {
   const params = {
-    botAlias: 'YOUR_BOT_ALIAS',
-    botName: 'YOUR_BOT_NAME',
+    botAlias: 'TestBotAlias',
+    botName: 'HAL_R_2',
     inputText,
     userId: 'user123'
   };
