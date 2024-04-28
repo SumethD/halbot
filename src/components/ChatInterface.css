@@ -1,21 +1,29 @@
-.chat-interface {
+.chat-main-div{
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    height: 500px; /* Increase height as needed */
-    position: absolute; /* Set position to absolute */
-    top: 50%; /* Place at vertical center */
-    left: 50%; /* Place at horizontal center */
-    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    gap: 20px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 2.5%;
+    height: 70%;
+    width: 40%;
+    justify-content: flex-end;
 }
 
+.chat-interface {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Portion containing bot and user texts */
 .chat-history {
+    padding-left: 3%;
+    padding-right: 3%;
+    border: solid var(--primary) 2px;
     overflow-y: auto;
+    flex: 1;
     max-height: calc(100% - 80px); /* Adjust max-height to leave space for input message */
 }
 
@@ -35,26 +43,41 @@
     border-radius: 8px;
 }
 
-.message-input {
-    position: absolute; /* Set position to absolute */
-    bottom: 20px; /* Adjust bottom distance as needed */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-    width: 80%; /* Adjust width as needed */
-    max-width: 300px; /* Set maximum width */
+
+/* main div for message input box */
+.message-div {
+    border: solid var(--primary) 2px;
+    border-top: none;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
 }
 
+/* text feild + button */
+.message-input {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+}
+
+/* just input text field */
 .input-field {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 8px 0 0 8px;
+    font-size: 15px;
+}
+
+/* Remove border when input field is focused */
+.input-field:focus {
+    outline: none; 
 }
 
 .send-button {
-    background-color: #007bff;
+    background-color: var(--primary);
     color: #fff;
     border: none;
+    border: solid var(--primary) 2px;
     border-radius: 0 8px 8px 0;
     padding: 10px 20px;
     cursor: pointer;
@@ -64,17 +87,16 @@
     background-color: #0056b3;
 }
 .header-box {
-    background-color: #007bff;
+    background-color: var(--primary);
     color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: 15px 15px 0px 0px;
     display: flex; /* Add flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-  }
+}
   
-  .header-box h1 {
+.header-box h1 {
     margin: 0;
-  }
+}
   
