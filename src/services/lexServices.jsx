@@ -1,9 +1,8 @@
-const AWS = require('aws-sdk');
-
+import AWS from 'aws-sdk';
 AWS.config.update({
-  region: 'YOUR_REGION',
-  accessKeyId: 'YOUR_ACCESS_KEY_ID',
-  secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
+  region: 'ap-southeast-2',
+  accessKeyId: process.env.REACT_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_AWS_SECRET_ACCESS_KEY
 });
 
 const lexruntime = new AWS.LexRuntime();
