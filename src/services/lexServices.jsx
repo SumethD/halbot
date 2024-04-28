@@ -9,8 +9,8 @@ const lexruntime = new AWS.LexRuntime();
 
 export const sendMessageToLex = async (inputText) => {
   const params = {
-    botAlias: 'YOUR_BOT_ALIAS',
-    botName: 'YOUR_BOT_NAME',
+    botAlias: 'TestBotAlias',
+    botName: 'HAL_R_2',
     inputText,
     userId: 'user123'
   };

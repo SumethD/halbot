@@ -24,7 +24,7 @@ const ChatInterface = () => {
       // Send user message to Lex
       const response = await sendMessageToLex(inputMessage);
       // Update chat history with user message and Lex response
-      setChatHistory([...chatHistory, { user: inputMessage, bot: response }]);
+      setChatHistory([...chatHistory, { user: inputMessage, bot: response['message'] }]);
       setInputMessage('');
     }
   };
