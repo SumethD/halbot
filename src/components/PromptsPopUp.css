@@ -39,24 +39,27 @@
     flex: 1;
 }
 
-/* Header + 'i' icon */
+/* text header + 'i' icon */
 .prompts-header-main-div{
     display: flex;
     align-items: center;
 }
 
+/* prompts text header */
 .header{
     padding-left: 25px;
     color: white;
     flex: 1;
     font-size: 18px;
     font-weight: 400;
+    text-align: center;
 }
 
 .prompts-main-div{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-top: 5%;
 }
 
 .prompt-div{
