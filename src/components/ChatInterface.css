@@ -40,16 +40,29 @@
     background-color: var(--secondary);
     margin-left: 20%;
     border-top-right-radius: 0;
-
 }
 
 .bot {
-    background-color: var(--lightgrey);
-    margin-right: 20%;
+    background-color: var(--lightgrey);   
     border-top-left-radius: 0;
-
 }
 
+.botIcon {
+    width: 40px;
+    height: auto;
+}
+
+.bot-main-div{
+    margin-right: 20%;
+    display: flex;
+}
+
+.botmessages-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 10px;
+}
 
 /* main div for message input box */
 .message-div {

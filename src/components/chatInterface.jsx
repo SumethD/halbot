@@ -3,14 +3,15 @@ import Slider from 'react-slick';
 import './ChatInterface.css'; // Import CSS file for styling
 import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
+import botIcon from '../images/boticon.png'
 
 const ChatInterface = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const sliderRef = useRef(null);
 
-  const example_response = ["Hello I am Hal!", "idk"]
-
+  //const example_response = ["Hello I am Hal!", "idk"];
+  const example_response = "Hello I am Hal and this is a long test";
   useEffect(() => {
     // TODO: the scroll gets rid of previous chat history
     // Scroll to bottom of the chat history when chat history updates
@@ -73,6 +74,7 @@ const ChatInterface = () => {
               {message.botType === 'object' ? (
                 <div>
                   <div className="user message">{message.user}</div>
+                  <img className='botIcon' src={botIcon}></img>
                   {message.bot.map((item, itemIndex) => (
                     <div key={itemIndex} className='bot message'>{item}</div>
                   ))}
@@ -80,7 +82,10 @@ const ChatInterface = () => {
               ) : (
                 <div>
                   <div className="user message">{message.user}</div>
-                  <div className="bot message">{message.bot}</div>
+                  <div className='bot-main-div'>
+                      <div><img className='botIcon' src={botIcon}></img></div>
+                      <div className="bot message botmessages-div">{message.bot}</div>
+                  </div>
                 </div>
               )}
             </div>
