@@ -56,9 +56,11 @@
 
 /* text feild + button */
 .message-input {
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 8px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 /* just input text field */
@@ -103,3 +105,10 @@
     margin: 0;
 }
   
+
+/* Media query for normal laptop screens */
+@media screen and (max-width: 1024px) {
+    .input-field {
+        font-size: 12px;
+    }
+}
