@@ -70,6 +70,9 @@
     border: none;
     border-radius: 8px 0 0 8px;
     font-size: 15px;
+    /* Fix for input field exceeding parent div */
+    box-sizing:border-box;  
+    width: 100% ;
 }
 
 /* Remove border when input field is focused */
@@ -107,8 +110,16 @@
   
 
 /* Media query for normal laptop screens */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
     .input-field {
         font-size: 12px;
+    }
+}
+
+
+/* Media query for phone screens */
+@media screen and (max-width: 767px) {
+    .input-field {
+        font-size: 10px;
     }
 }
