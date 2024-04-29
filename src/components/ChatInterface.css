@@ -31,19 +31,23 @@
 }
 
 .message {
-    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 10px;
 }
 
-.user-message {
-    background-color: #f0f0f0;
-    padding: 8px;
-    border-radius: 8px;
+.user {
+    background-color: var(--secondary);
+    margin-left: 20%;
+    border-top-right-radius: 0;
+
 }
 
-.bot-message {
-    background-color: #e0e0e0;
-    padding: 8px;
-    border-radius: 8px;
+.bot {
+    background-color: var(--lightgrey);
+    margin-right: 20%;
+    border-top-left-radius: 0;
+
 }
 
 

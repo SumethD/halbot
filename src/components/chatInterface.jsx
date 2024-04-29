@@ -72,15 +72,15 @@ const ChatInterface = () => {
             <div key={index}>
               {message.botType === 'object' ? (
                 <div>
-                  <div className="user-message">User: {message.user}</div>
+                  <div className="user message">{message.user}</div>
                   {message.bot.map((item, itemIndex) => (
-                    <div key={itemIndex} className='bot-message'>{item}</div>
+                    <div key={itemIndex} className='bot message'>{item}</div>
                   ))}
                 </div>
               ) : (
                 <div>
-                  <div className="user-message">User: {message.user}</div>
-                  <div className="bot-message">Bot: {message.bot}</div>
+                  <div className="user message">{message.user}</div>
+                  <div className="bot message">{message.bot}</div>
                 </div>
               )}
             </div>
