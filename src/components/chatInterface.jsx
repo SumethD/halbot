@@ -11,7 +11,7 @@ const ChatInterface = () => {
   const sliderRef = useRef(null);
 
   //const example_response = ["Hello I am Hal!", "idk"];
-  const example_response = "Hello I am Hal and this is a long test";
+  const example_response = "Hello I";
   useEffect(() => {
     // TODO: the scroll gets rid of previous chat history
     // Scroll to bottom of the chat history when chat history updates
@@ -73,15 +73,19 @@ const ChatInterface = () => {
             <div key={index}>
               {message.botType === 'object' ? (
                 <div>
-                  <div className="user message">{message.user}</div>
-                  <img className='botIcon' src={botIcon}></img>
-                  {message.bot.map((item, itemIndex) => (
-                    <div key={itemIndex} className='bot message'>{item}</div>
-                  ))}
+                  <div className='user-message-container'><div className="user message">{message.user}</div></div>
+                  <div className='bot-main-div'>
+                    <div><img className='botIcon' src={botIcon}></img></div>
+                    <div className='botmessages-div'>
+                      {message.bot.map((item, itemIndex) => (
+                        <div className='bot-message-container'><div key={itemIndex} className='bot message'>{item}</div></div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div>
-                  <div className="user message">{message.user}</div>
+                  <div className='user-message-container'><div className="user message">{message.user}</div></div>
                   <div className='bot-main-div'>
                       <div><img className='botIcon' src={botIcon}></img></div>
                       <div className="bot message botmessages-div">{message.bot}</div>

@@ -31,9 +31,19 @@
 }
 
 .message {
-    margin-top: 10px;
     padding: 8px;
     border-radius: 10px;
+}
+
+.user-message-container{
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bot-message-container{
+    padding-top: 10px;
+    display: flex;
 }
 
 .user {
