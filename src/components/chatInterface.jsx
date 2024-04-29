@@ -48,21 +48,20 @@ const ChatInterface = () => {
     }
   };
 
-  // connection from pop up component
-  const updateInputMessage = async (message) => {
-    // First, update the input message
-    await setInputMessage(message);
-    console.log("from update input message: ", inputMessage)
-
-    // Then, call handleSendMessage after inputMessage state has been updated
-    handleSendMessage();
+  // method for pop up
+  const handlePopUpClick = async (message) => {
+    if (message.trim() !== '') {
+      // Send message to Lex
+      const response = await sendMessageToLex(message);
+      // Update chat history with user message and Lex response
+      setChatHistory([...chatHistory, { user: message, bot: response['message'] }]);
+    }
   };
-
 
   return (
     <div className='chat-main-div'>
       <PromptsPopUp
-        updateInputMessage={updateInputMessage}
+        handlePopUpClick={handlePopUpClick}
       ></PromptsPopUp>
       <div className="chat-interface">
         <div className="header-box">

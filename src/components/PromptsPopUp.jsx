@@ -4,7 +4,7 @@ import info_icon from '../images/fi-rr-info.svg';
 import '../values/colours.css';
 
 
-const PromptsPopUp = ({updateInputMessage}) => {
+const PromptsPopUp = ({handlePopUpClick}) => {
     const [popupOpen, setPopupOpen] = useState(false);
 
     const togglePopup = () => {
@@ -12,7 +12,7 @@ const PromptsPopUp = ({updateInputMessage}) => {
     };
 
     const handleClick = (promptText) => {
-        updateInputMessage(promptText);
+        handlePopUpClick(promptText);
     };
     
     return(
