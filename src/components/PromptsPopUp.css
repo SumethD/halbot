@@ -35,6 +35,8 @@
     background-color: var(--primary);
     margin-top: 10%;
     border-radius: 10px;
+    /* Fix for fluctuating chatbox sizes */
+    flex: 1;
 }
 
 /* Header + 'i' icon */

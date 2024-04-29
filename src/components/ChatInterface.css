@@ -12,6 +12,7 @@
     justify-content: flex-end;
 }
 
+/* Chat whole */
 .chat-interface {
     width: 50%;
     display: flex;
