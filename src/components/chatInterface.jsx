@@ -15,10 +15,10 @@ const ChatInterface = () => {
   useEffect(() => {
     // TODO: the scroll gets rid of previous chat history
     // Scroll to bottom of the chat history when chat history updates
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(chatHistory.length);
-    }
-    console.log("input message updated:", inputMessage)
+    // if (sliderRef.current) {
+    //   sliderRef.current.slickGoTo(chatHistory.length);
+    // }
+    // console.log("input message updated:", inputMessage)
     
   }, [chatHistory,inputMessage]);
 
