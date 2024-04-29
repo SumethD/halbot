@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
-import { sendMessageToLex } from '../services/lexServices';
 import './ChatInterface.css'; // Import CSS file for styling
 import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
@@ -9,6 +8,8 @@ const ChatInterface = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const sliderRef = useRef(null);
+
+  const example_response = ["Hello I am Hal!", "idk"]
 
   useEffect(() => {
     // TODO: the scroll gets rid of previous chat history
@@ -24,37 +25,26 @@ const ChatInterface = () => {
     setInputMessage(e.target.value);
   };
 
-  const handleSendMessage = async () => {
-    console.log("reched dumb")
-    console.log("input message: ", inputMessage)
-    if (inputMessage.trim() !== '') {
-      // Send user message to Lex
-      console.log("reched dum")
-
-      const response = await sendMessageToLex(inputMessage);
-      // Update chat history with user message and Lex response
-      console.log("reched dum")
-
-      setChatHistory([...chatHistory, { user: inputMessage, bot: response['message'] }]);
-      setInputMessage('');
-      console.log("reched dum")
-
-    }
-  };
-
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSendMessage();
     }
   };
 
-  // method for pop up
+  // method for send through button or press enter
+  const handleSendMessage = async () => {
+    if (inputMessage.trim() !== '') {
+      setChatHistory([...chatHistory, { user: inputMessage, bot: example_response, botType: typeof example_response }]);
+      setInputMessage('');
+    }
+  };
+
+  // method for pop up send
   const handlePopUpClick = async (message) => {
     if (message.trim() !== '') {
-      // Send message to Lex
-      const response = await sendMessageToLex(message);
-      // Update chat history with user message and Lex response
-      setChatHistory([...chatHistory, { user: message, bot: response['message'] }]);
+      setChatHistory([...chatHistory, { user: message, bot: example_response, botType: typeof example_response }]);
+
+      setInputMessage('');
     }
   };
 
@@ -79,9 +69,20 @@ const ChatInterface = () => {
           className="chat-history"
         >
           {chatHistory.map((message, index) => (
-            <div key={index} className="message">
-              <p className="user-message">User: {message.user}</p>
-              <p className="bot-message">Bot: {message.bot}</p>
+            <div key={index}>
+              {message.botType === 'object' ? (
+                <div>
+                  <div className="user-message">User: {message.user}</div>
+                  {message.bot.map((item, itemIndex) => (
+                    <div key={itemIndex} className='bot-message'>{item}</div>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <div className="user-message">User: {message.user}</div>
+                  <div className="bot-message">Bot: {message.bot}</div>
+                </div>
+              )}
             </div>
           ))}
         </Slider>
