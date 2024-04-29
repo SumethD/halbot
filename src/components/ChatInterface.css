@@ -98,19 +98,16 @@
 .send-button:hover {
     background-color: #0056b3;
 }
+
 .header-box {
-    font-size: 32px;
+    font-size: 30px;
     background-color: var(--primary);
     color: #fff;
-    padding: 20px;
+    padding: 12px;
     border-radius: 15px 15px 0px 0px;
     display: flex; /* Add flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-}
-  
-.header-box h1 {
-    margin: 0;
 }
   
 
