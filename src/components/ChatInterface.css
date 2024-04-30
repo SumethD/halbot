@@ -28,6 +28,7 @@
     overflow-y: auto;
     flex: 1;
     max-height: calc(100% - 80px); /* Adjust max-height to leave space for input message */
+    overflow-y: scroll;
 }
 
 .message {
