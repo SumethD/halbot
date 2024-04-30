@@ -18,6 +18,10 @@
     height: auto;
 }
 
+.info_button:hover {
+    cursor: pointer;
+}
+
 .info_button::after {
     display: block; width: 0; 
     content: "";
