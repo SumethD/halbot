@@ -1,60 +1,132 @@
+
+/* chat + prompts */
+.chat-main-div{
+    display: flex;
+    gap: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-70%, -50%);
+    padding: 2.5%;
+    height: 70%;
+    width: 55%;
+    justify-content: flex-end;
+}
+
+/* Chat whole */
 .chat-interface {
+    width: 50%;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
+    height: 100%;
+}
+
+/* Portion containing bot and user texts */
+.chat-history {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+    border: solid var(--primary) 2px;
+    overflow-y: auto;
+    flex: 1;
+    max-height: calc(100% - 80px); /* Adjust max-height to leave space for input message */
+    overflow-y: scroll;
+}
+
+/* style applied to both user and bot messages */
+.message {
+    padding: 8px;
+    border-radius: 10px;
+}
+
+/* main container wrapping user text */
+.user-message-container{
+    /* padding = white space above user text */
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* main container wrapping bot text */
+.bot-message-container{
+    /* padding = white space above bot text */
+    padding-top: 10px;
+    display: flex;
+}
+
+/* user text */
+.user {
+    background-color: var(--secondary);
+    margin-left: 20%;
+    border-top-right-radius: 0;
+}
+
+/* bot text */
+.bot {
+    background-color: var(--lightgrey);   
+    border-top-left-radius: 0;
+}
+
+.botIcon {
+    width: 40px;
+    height: auto;
+}
+
+/* container wrapping bot icon + bot text(s) */
+.bot-main-div{
+    margin-right: 20%;
+    display: flex;
+}
+
+/* positioning first bot text to be south-east of bot icon + main div for response = multiple bot messages*/
+.botmessages-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 10px;
+    /* extra space under last bot message */
+    margin-bottom: 30px;
+}
+
+/* main div for message input box */
+.message-div {
+    border: solid var(--primary) 2px;
+    border-top: none;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
+}
+
+/* text feild + button */
+.message-input {
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 8px;
-    height: 500px; /* Increase height as needed */
-    position: absolute; /* Set position to absolute */
-    top: 50%; /* Place at vertical center */
-    left: 50%; /* Place at horizontal center */
-    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.chat-history {
-    overflow-y: auto;
-    max-height: calc(100% - 80px); /* Adjust max-height to leave space for input message */
-}
-
-.message {
-    margin-bottom: 10px;
-}
-
-.user-message {
-    background-color: #f0f0f0;
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.bot-message {
-    background-color: #e0e0e0;
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.message-input {
-    position: absolute; /* Set position to absolute */
-    bottom: 20px; /* Adjust bottom distance as needed */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-    width: 80%; /* Adjust width as needed */
-    max-width: 300px; /* Set maximum width */
-}
-
+/* just input text field */
 .input-field {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 8px 0 0 8px;
+    font-size: 15px;
+    /* Fix for input field exceeding parent div */
+    box-sizing:border-box;  
+    width: 100% ;
+}
+
+/* Remove border when input field is focused */
+.input-field:focus {
+    outline: none; 
 }
 
 .send-button {
-    background-color: #007bff;
+    background-color: var(--primary);
     color: #fff;
     border: none;
+    border: solid var(--primary) 2px;
     border-radius: 0 8px 8px 0;
     padding: 10px 20px;
     cursor: pointer;
@@ -63,18 +135,30 @@
 .send-button:hover {
     background-color: #0056b3;
 }
+
 .header-box {
-    background-color: #007bff;
+    font-size: 30px;
+    background-color: var(--primary);
     color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 15px 15px 0px 0px;
     display: flex; /* Add flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-  }
+}
   
-  .header-box h1 {
-    margin: 0;
-  }
-  
+
+/* Media query for normal laptop screens */
+@media screen and (max-width: 1200px) {
+    .input-field {
+        font-size: 12px;
+    }
+}
+
+
+/* Media query for phone screens */
+@media screen and (max-width: 767px) {
+    .input-field {
+        font-size: 10px;
+    }
+}
