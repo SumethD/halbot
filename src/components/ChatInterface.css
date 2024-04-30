@@ -24,6 +24,7 @@
 .chat-history {
     padding-left: 3%;
     padding-right: 3%;
+    padding-top: 3%;
     border: solid var(--primary) 2px;
     overflow-y: auto;
     flex: 1;
@@ -31,28 +32,35 @@
     overflow-y: scroll;
 }
 
+/* style applied to both user and bot messages */
 .message {
     padding: 8px;
     border-radius: 10px;
 }
 
+/* main container wrapping user text */
 .user-message-container{
+    /* padding = white space above user text */
     padding-top: 10px;
     display: flex;
     justify-content: flex-end;
 }
 
+/* main container wrapping bot text */
 .bot-message-container{
+    /* padding = white space above bot text */
     padding-top: 10px;
     display: flex;
 }
 
+/* user text */
 .user {
     background-color: var(--secondary);
     margin-left: 20%;
     border-top-right-radius: 0;
 }
 
+/* bot text */
 .bot {
     background-color: var(--lightgrey);   
     border-top-left-radius: 0;
@@ -63,16 +71,20 @@
     height: auto;
 }
 
+/* container wrapping bot icon + bot text(s) */
 .bot-main-div{
     margin-right: 20%;
     display: flex;
 }
 
+/* positioning first bot text to be south-east of bot icon + main div for response = multiple bot messages*/
 .botmessages-div {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     margin-left: 10px;
+    /* extra space under last bot message */
+    margin-bottom: 30px;
 }
 
 /* main div for message input box */
