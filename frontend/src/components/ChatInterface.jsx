@@ -19,17 +19,18 @@ const ChatInterface = () => {
     }, [chatHistory]);
 
     // main method to send message to bot
-    const handleSendMessage = async (userMessage) => {
+    const handleSendMessage = async (userMessage = inputMessage) => {
         if (userMessage.trim() !== '') {
-
             const newUserMessage = {
                 sender: 'user',
                 message: userMessage
             };
     
+            setChatHistory(prevChatHistory => [...prevChatHistory, newUserMessage]);
+    
             const res = await sendMessage(userMessage);
     
-            console.log("res: ", res);
+            console.log(res);
     
             if (!res || !res.messages) return;
     
@@ -39,9 +40,9 @@ const ChatInterface = () => {
                 ...message
             }));
     
-            // updates in one go to prevent overwrite
-            const updatedChatHistory = [...chatHistory, newUserMessage, ...botMessages];
-            setChatHistory(updatedChatHistory);
+            console.log(botMessages);
+    
+            setChatHistory(prevChatHistory => [...prevChatHistory, ...botMessages]);
             setInputMessage('');
         }
     };
