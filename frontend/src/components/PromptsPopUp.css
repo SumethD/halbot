@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-top: 5%;
+    padding-top: 2%;
 }
 
 .prompt-div{
@@ -73,4 +73,24 @@
     background-color: var(--lightgrey);
     text-align: center;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.prompt-div:hover{
+    background-color: var(--secondary);
+}
+
+/* Media query for normal laptop screens */
+@media screen and (max-width: 1300px) {
+    .header{
+        font-size: 14px;
+    }
+}
+
+
+/* Media query for phone screens */
+@media screen and (max-width: 767px) {
+    .input-field {
+        font-size: 10px;
+    }
 }
