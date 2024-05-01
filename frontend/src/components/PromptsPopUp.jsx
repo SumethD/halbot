@@ -28,9 +28,12 @@ const PromptsPopUp = ({handlePopUpClick}) => {
                         <div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
                             What course electives can I take?
                         </div>
-                        <form className='prompt-div' onClick={() => handleClick("Which course electives don't have any exams?")}>
+                        <div className='prompt-div' onClick={() => handleClick("Which course electives don't have any exams?")}>
                          Which course electives don't have any exams?
-                        </form>
+                        </div>
+                        <div className='prompt-div' onClick={() => handleClick("Which course electives have exams?")}>
+                         Which course electives have exams?
+                        </div>
                 </div>
                 </div>
             )}
