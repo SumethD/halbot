@@ -28,15 +28,18 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
                         <div className='botmessages-div'>
                             <div className="bot message ">{chatMessage.imageResponseCard.title}</div>
                             {/* map all the buttons */}
-                            {chatMessage.imageResponseCard.buttons.map((button, index) => (
-                                    <button 
-                                        onClick={() => handleClick(button.value)} 
-                                        key={index} className="button" 
-                                        value={button.value}
-                                    >
-                                        {button.text}
-                                    </button>
-                            ))}
+                            <div className='bot-prompt-buttons-div'>
+                                {chatMessage.imageResponseCard.buttons.map((button, index) => (
+                                        <button 
+                                            onClick={() => handleClick(button.value)} 
+                                            key={index} 
+                                            className="bot-prompt-button" 
+                                            value={button.value}
+                                        >
+                                            {button.text}
+                                        </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 );

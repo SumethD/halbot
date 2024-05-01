@@ -149,6 +149,17 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
+
+/* image response card buttons */
+.bot-prompt-button{
+    margin-top: 8px;
+    padding: 2%;
+    width: 100%;
+}
+
+.bot-prompt-buttons-div{
+    padding: 1% 10%;
+}
   
 
 /* Media query for normal laptop screens */
