@@ -2,7 +2,6 @@ import React, {useState, useRef, useEffect} from 'react';
 import './ChatInterface.css'; // Import CSS file for styling
 import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
-import botIcon from '../images/boticon.png';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
 
@@ -18,16 +17,16 @@ const ChatInterface = () => {
 
 
     // method for send through button or press enter
-    const handleSendMessage = async () => {
-        if (inputMessage.trim() !== '') {
+    const handleSendMessage = async (userMessage = inputMessage) => {
+        if (userMessage.trim() !== '') {
             setChatHistory([...chatHistory,
                 {
                     sender: 'user',
-                    message: inputMessage
+                    message: userMessage
                 }
             ]);
 
-            const res = await sendMessage(inputMessage);
+            const res = await sendMessage(userMessage);
 
             console.log(res);
 
@@ -52,10 +51,7 @@ const ChatInterface = () => {
 
     // method for pop up send
     const handlePopUpClick = async (message) => {
-        if (message.trim() !== '') {
-            setChatHistory([...chatHistory, {user: message, bot: example_response, botType: typeof example_response}]);
-            setInputMessage('');
-        }
+        handleSendMessage(message);
     };
 
 
