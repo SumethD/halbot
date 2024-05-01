@@ -2,6 +2,9 @@ import React from 'react';
 import botIcon from "../../images/boticon.png";
 
 const ChatBubble = ({chatMessage}) => {
+    if (chatMessage.sender == 'bot')
+        console.log("bot message: ", chatMessage.message);
+
     return (
         <div>
             {
