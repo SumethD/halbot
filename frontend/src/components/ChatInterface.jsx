@@ -4,6 +4,7 @@ import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
+import botIcon from "../images/boticon.png";
 
 const ChatInterface = () => {
     const [inputMessage, setInputMessage] = useState('');
@@ -12,42 +13,39 @@ const ChatInterface = () => {
     const chatbox = useRef(null);
     useEffect(() => chatbox.current.scrollIntoView(false), [chatHistory]);
 
-    //const example_response = ["Hello I am Hal!", "idk"];
-    const example_response = "Hello I";
+    // keeping an eye on chat history
+    useEffect(() => {
+        console.log("Chat History Updated:", chatHistory);
+    }, [chatHistory]);
 
-
-    // method for send through button or press enter
+    // main method to send message to bot
     const handleSendMessage = async (userMessage = inputMessage) => {
         if (userMessage.trim() !== '') {
-            setChatHistory([...chatHistory,
-                {
-                    sender: 'user',
-                    message: userMessage
-                }
-            ]);
 
+            const newUserMessage = {
+                sender: 'user',
+                message: userMessage
+            };
+    
             const res = await sendMessage(userMessage);
-
+    
             console.log(res);
-
+    
             if (!res || !res.messages) return;
-
-            const botMessages = res.messages;
-
-            const mappedMessages = botMessages.map(message => (
-                {
-                    sender: 'bot',
-                    message: message.content,
-                    ...message
-                }
-            ));
-
-            console.log(mappedMessages)
-
-            setChatHistory([...chatHistory, ...mappedMessages]);
+    
+            const botMessages = res.messages.map(message => ({
+                sender: 'bot',
+                message: message.content,
+                ...message
+            }));
+    
+            // updates in one go to prevent overwrite
+            const updatedChatHistory = [...chatHistory, newUserMessage, ...botMessages];
+            setChatHistory(updatedChatHistory);
             setInputMessage('');
         }
     };
+    
 
     // method for pop up send
     const handlePopUpClick = async (message) => {
@@ -59,6 +57,7 @@ const ChatInterface = () => {
         setInputMessage(e.target.value);
     };
 
+    // method for enter
     const handleKeyPress = async (event) => {
         if (event.key === 'Enter') {
             await handleSendMessage();
@@ -73,12 +72,13 @@ const ChatInterface = () => {
             <div className="chat-interface">
                 <div className="header-box">HAL BOT</div>
                 <div className="chat-history">
-                    <div ref={chatbox}>
-                        {chatHistory.map((message, index) => (
-                           <ChatBubble key={index} chatMessage={message} />
-                        ))}
-                    </div>
+                <div ref={chatbox}>
+                    {chatHistory.map((message, index) => (
+                        <ChatBubble key={index} chatMessage={message} />
+                    ))}
+                </div>  
                 </div>
+                {/* message input below: */}
                 <div className="message-div">
                     <div className="message-input">
                         <input
