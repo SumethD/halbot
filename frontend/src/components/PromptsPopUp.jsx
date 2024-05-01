@@ -3,7 +3,6 @@ import './PromptsPopUp.css';
 import info_icon from '../images/fi-rr-info.svg';
 import '../values/colours.css';
 
-
 const PromptsPopUp = ({handlePopUpClick}) => {
     const [popupOpen, setPopupOpen] = useState(false);
 
@@ -29,11 +28,10 @@ const PromptsPopUp = ({handlePopUpClick}) => {
                         <div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
                             What course electives can I take?
                         </div>
-                        <div className='prompt-div' onClick={() => handleClick("Hi")}>
-                            Hi
-                        </div>
+                        <form className='prompt-div' onClick={() => handleClick("Which course electives don't have any exams?")}>
+                         Which course electives don't have any exams?
+                        </form>
                 </div>
-                
                 </div>
             )}
 
