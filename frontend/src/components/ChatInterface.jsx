@@ -19,7 +19,7 @@ const ChatInterface = () => {
     }, [chatHistory]);
 
     // main method to send message to bot
-    const handleSendMessage = async (userMessage = inputMessage) => {
+    const handleSendMessage = async (userMessage) => {
         if (userMessage.trim() !== '') {
 
             const newUserMessage = {
@@ -29,7 +29,7 @@ const ChatInterface = () => {
     
             const res = await sendMessage(userMessage);
     
-            console.log(res);
+            console.log("res: ", res);
     
             if (!res || !res.messages) return;
     
@@ -59,9 +59,16 @@ const ChatInterface = () => {
 
     // method for enter
     const handleKeyPress = async (event) => {
+        console.log("type of input message ON ENTER ", typeof inputMessage, " here lie thy input: ", inputMessage)
         if (event.key === 'Enter') {
-            await handleSendMessage();
+            await handleSendMessage(inputMessage);
         }
+    };
+
+    const handleButtonPress = async () => {
+        console.log("type of input message ", typeof inputMessage, " here lie thy input: ", inputMessage)
+        await handleSendMessage(inputMessage);
+        
     };
 
     return (
@@ -89,7 +96,7 @@ const ChatInterface = () => {
                             className="input-field"
                             onKeyDown={handleKeyPress}
                         />
-                        <button onClick={handleSendMessage} className="send-button">Send</button>
+                        <button onClick={handleButtonPress} className="send-button">Send</button>
                     </div>
 
                 </div>
