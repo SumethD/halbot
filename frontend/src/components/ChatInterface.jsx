@@ -27,7 +27,8 @@ const ChatInterface = () => {
             };
     
             setChatHistory(prevChatHistory => [...prevChatHistory, newUserMessage]);
-    
+            setInputMessage('');
+            
             const res = await sendMessage(userMessage);
     
             console.log(res);
@@ -43,7 +44,7 @@ const ChatInterface = () => {
             console.log(botMessages);
     
             setChatHistory(prevChatHistory => [...prevChatHistory, ...botMessages]);
-            setInputMessage('');
+            
         }
     };
     
