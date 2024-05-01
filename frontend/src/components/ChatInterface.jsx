@@ -31,7 +31,7 @@ const ChatInterface = () => {
             
             const res = await sendMessage(userMessage);
     
-            console.log(res);
+            console.log("res: ",res);
     
             if (!res || !res.messages) return;
     
@@ -83,7 +83,7 @@ const ChatInterface = () => {
                 <div className="chat-history">
                 <div ref={chatbox}>
                     {chatHistory.map((message, index) => (
-                        <ChatBubble key={index} chatMessage={message} />
+                        <ChatBubble key={index} chatMessage={message} handlePopUpClick={handlePopUpClick} />
                     ))}
                 </div>  
                 </div>
