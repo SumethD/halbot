@@ -1,0 +1,48 @@
+.filter-main-div{
+    background-color: var(--lightgrey);
+    /* background-color: white; */
+    border-radius: 5px;
+    padding: 3%;
+    margin: 0px 25px;
+    font-size: 15px;
+}
+
+.heading{
+    font-size: 20px;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.sub-heading {
+    padding-bottom: 5px;
+    border-bottom: 1px solid grey;
+}
+
+.checkbox-img{
+    width: 20px;
+    height: auto;
+}
+
+
+/* Individual check boxes */
+.checkbox-field-div{
+    font-size: 14px;
+    display: inline-flex;
+    gap: 10px;
+    padding: 8px 15px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+/* all the checkbox options div */
+.checkboxes-main-div{
+    display: flex;
+    gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.idk{
+    width: 100%;
+}

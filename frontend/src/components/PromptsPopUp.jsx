@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import './PromptsPopUp.css';
 import info_icon from '../images/fi-rr-info.svg';
 import '../values/colours.css';
-
+import CourseFilter from './CourseFilter';
 const PromptsPopUp = ({handlePopUpClick}) => {
     const [popupOpen, setPopupOpen] = useState(false);
 
@@ -25,15 +25,7 @@ const PromptsPopUp = ({handlePopUpClick}) => {
                     </div>
                 </div>
                 <div className='prompts-main-div'>
-                        <div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
-                            What course electives can I take?
-                        </div>
-                        <div className='prompt-div' onClick={() => handleClick("Which course electives don't have any exams?")}>
-                         Which course electives don't have any exams?
-                        </div>
-                        <div className='prompt-div' onClick={() => handleClick("Which course electives have exams?")}>
-                         Which course electives have exams?
-                        </div>
+                    <CourseFilter></CourseFilter>
                 </div>
                 </div>
             )}
