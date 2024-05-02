@@ -41,6 +41,8 @@
     border-radius: 10px;
     /* Fix for fluctuating chatbox sizes */
     flex: 1;
+    /* hide extra prompts */
+    overflow: hidden;
 }
 
 /* text header + 'i' icon */
@@ -63,6 +65,8 @@
     flex-direction: column;
     gap: 10px;
     padding-top: 2%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 20px; /* Add padding to bottom to prevent content from sticking to the bottom */
 }
 
 .prompt-div{
