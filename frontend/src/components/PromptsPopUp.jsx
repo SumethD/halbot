@@ -25,6 +25,9 @@ const PromptsPopUp = ({handlePopUpClick}) => {
                     </div>
                 </div>
                 <div className='prompts-main-div'>
+                    <div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
+                        What course electives can I take?
+                    </div>
                     <CourseFilter></CourseFilter>
                 </div>
                 </div>

@@ -3,6 +3,7 @@ import './CourseFilter.css';
 import tick from '../images/tick.png';
 import cross from '../images/cross.png';
 import empty from '../images/empty.png';
+import sectionIcon from '../images/fi-rr-angle-down.svg';
 
 function CourseFilter() {
   const [assignmentsState, setAssignmentsState] = useState([
@@ -18,8 +19,7 @@ function CourseFilter() {
     setAssignmentsState(newAssignmentsState);
   };
 
-  const [assignmentsOpen, setAssignmentsOpen] = useState(true);
-  const [availabilityOpen, setAvailabilityOpen] = useState(true);
+  const [filterOpen, setFilterOpen] = useState(true);
   const [semester1Checked, setSemester1Checked] = useState(false);
   const [semester2Checked, setSemester2Checked] = useState(false);
 
@@ -34,17 +34,16 @@ function CourseFilter() {
 
   return (
     <div className='filter-main-div'>
-      <div className='heading'>Course Electives Filter </div>
- 
-      {/* Assignments Subheading */}
-      <div>
-        <div className="sub-heading" onClick={() => setAssignmentsOpen(!assignmentsOpen)}>
-          Have or dont have
-          {/* <img src={subheadingIcon}></img> */}
+      <div className='flex-heading' onClick={() => setFilterOpen(!filterOpen)}>
+        <div className='filter-heading'>Course Electives Filter </div>
+        <div className={`icon-container ${filterOpen ? 'rotate-icon rotate-icon-opened' : 'rotate-icon'}`}>
+          <img src={sectionIcon} alt="Section Icon" />
         </div>
-        {assignmentsOpen && (
-          <div className='checkboxes-main-div'>
-            
+      </div>
+      {filterOpen && (
+        <div>
+        <div className='checkboxes-main-div'>
+              
               {assignmentsState.map((assignment, index) => (
                 <div  key={index} onClick={() => toggleAssignmentState(index)}>
                   <div className='checkbox-field-div'>
@@ -53,41 +52,28 @@ function CourseFilter() {
                   </div>
                 </div>
               ))}
-          </div>
-        )}
-      </div>
-
-      {/* Availability Subheading */}
-      <div>
-        <div className="sub-heading" onClick={() => setAvailabilityOpen(!availabilityOpen)}>
-          Available in
         </div>
-        {availabilityOpen && (
-          <div className='checkboxes-main-div'>
-            <label>
-              <input
-                type="checkbox"
-                name="semester1"
-                checked={semester1Checked}
-                onChange={handleAvailabilityChange}
-              />
-              Semester 1
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="semester2"
-                checked={semester2Checked}
-                onChange={handleAvailabilityChange}
-              />
-              Semester 2
-            </label>
-          </div>
-        )}
-      </div> 
+          
+        <div className='checkboxes-main-div'>
+            <div  onClick={() => setSemester1Checked(!semester1Checked)}>
+                <div className='checkbox-field-div'>
+                    {semester1Checked ? <img src={tick} className='checkbox-img' alt="Checked" /> : <img src={empty} className='checkbox-img' alt="unchecked" />}
+                    <div className='idk'>Semester 1</div>
+                </div>
+            </div>
+            <div  onClick={() => setSemester2Checked(!semester2Checked)}>
+                <div className='checkbox-field-div'>
+                    {semester2Checked ? <img src={tick} className='checkbox-img' alt="Checked" /> : <img src={empty} className='checkbox-img' alt="unchecked" />}
+                    <div className='idk'>Semester 2</div>
+                </div>
+            </div>
+        </div>
 
-      {/* Send Button */}
-      <button>Send</button>
+        
+        {/* Send Button */}
+        <div className='flexy-end'><button className='send-filter-btn'>Send</button></div>
+        </div>
+      )}
     </div>
   );
 }
