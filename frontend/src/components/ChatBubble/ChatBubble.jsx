@@ -50,27 +50,20 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
                 return (
                     <div className="bot-main-div">
                         <div><img className="botIcon" src={botIcon} alt="Bot Icon" /></div>
-                        <div className='botmessages-div'>
+                        <div className='botmessages-div bot message '>
                             {/* Render each custom payload item aka subjecy */}
+                            
                             {customPayloadData.map((payloadItem, index) => (
-                                <div key={index}>
-                                    <div>Subject Code: {payloadItem.SubjectCode.S}- {payloadItem.SubjectName.S}</div>
-                                    {/* Add more fields as needed */}
-                                    {/* Example: */}
-                                    {/* <div>Credit Points: {payloadItem.CreditPoints.N}</div> */}
+                                <button 
+                                className='subject-div' 
+                                key={index} 
+                                onClick={() => window.open(payloadItem.SubjectLink.S, '_blank')}
+                                >
+                                    <div>{payloadItem.SubjectCode.S} - {payloadItem.SubjectName.S}</div>
+                                    
                                     {/* <div>Subject Link: {payloadItem.SubjectLink.S}</div> */}
-                                    {/* Render assignments */}
-                                    <div>Assignments:</div>
-                                    {payloadItem.Assignments.L.map((assignment, idx) => (
-                                        <div key={idx}>
-                                            <div>Assignment Name: {assignment.M.AssignmentName.S}</div>
-                                            <div>Percentage Weight: {assignment.M.Percentage_Weight.N}</div>
-                                            {/* Add more assignment fields as needed */}
-                                            {/* Example: */}
-                                            {/* <div>Assignment Type: {assignment.M.AssignmentType.S}</div> */}
-                                        </div>
-                                    ))}
-                                </div>
+                                    
+                                </button>
                             ))}
                         </div>
                     </div>

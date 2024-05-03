@@ -160,6 +160,18 @@
 .bot-prompt-buttons-div{
     padding: 1% 10%;
 }
+
+.subject-div {
+    margin: 5px 12px;
+    padding: 8px 30px;
+    background-color: white;
+    border: solid 1px var(--primary);
+    border-radius: 5px;
+}
+
+.subject-div:hover{
+    background-color: var(--secondary);
+}
   
 
 /* Media query for normal laptop screens */

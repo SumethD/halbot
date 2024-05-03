@@ -18,7 +18,7 @@ const ChatInterface = () => {
         console.log("Chat History Updated:", chatHistory);
     }, [chatHistory]);
 
-    // main method to send message to bot
+    // main method to send message to bot AND save to chat history
     const handleSendMessage = async (userMessage = inputMessage) => {
         if (userMessage.trim() !== '') {
             const newUserMessage = {
@@ -73,10 +73,40 @@ const ChatInterface = () => {
         
     };
 
+    //  method to send message to bot and receive back
+    const sendBotQuery = async (query) => {
+        if (query.trim() !== '') {
+
+            const res = await sendMessage(query);
+    
+            console.log("res: ",res);
+    
+            if (!res || !res.messages) return;
+    
+            const botMessages = res.messages.map(message => ({
+                sender: 'bot',
+                message: message.content,
+                ...message
+            }));
+    
+            console.log(botMessages);
+    
+            
+        }
+    };
+
+    // seperate method for multiple queiries and intersection 
+    const handleFilterQuery = async (queryList) => {
+        for (const q in queryList){
+            
+        }
+    };
+
     return (
         <div className="chat-main-div">
             <PromptsPopUp
-                handlePopUpClick={handlePopUpClick}
+                handlePopUpClick={handlePopUpClick} 
+                handleFilterQuery = {handleFilterQuery}
             ></PromptsPopUp>
             <div className="chat-interface">
                 <div className="header-box">HAL BOT</div>

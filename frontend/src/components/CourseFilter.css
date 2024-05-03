@@ -19,6 +19,11 @@
     flex-grow: 1;
 }
 
+.section-subheading{
+    padding: 0 20px;
+    color: var(--primary);
+    font-weight: 600;
+}
 .checkbox-img{
     width: 16px;
     height: 16px;
@@ -64,6 +69,8 @@
     padding: 2%;
     border-radius: 10px;
     border: solid 1px var(--primary);
+    background-color: var(--primary);
+
 }
 
 .send-filter-btn:hover{
