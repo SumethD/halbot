@@ -43,9 +43,41 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
                         </div>
                     </div>
                 );
+            } else if (chatMessage.contentType === 'CustomPayload') {
+                // process dyanmo maps and data to display divs of the different course codes and their names
+                // Process CustomPayload data
+                const customPayloadData = JSON.parse(chatMessage.content);
+                return (
+                    <div className="bot-main-div">
+                        <div><img className="botIcon" src={botIcon} alt="Bot Icon" /></div>
+                        <div className='botmessages-div'>
+                            {/* Render each custom payload item aka subjecy */}
+                            {customPayloadData.map((payloadItem, index) => (
+                                <div key={index}>
+                                    <div>Subject Code: {payloadItem.SubjectCode.S}- {payloadItem.SubjectName.S}</div>
+                                    {/* Add more fields as needed */}
+                                    {/* Example: */}
+                                    {/* <div>Credit Points: {payloadItem.CreditPoints.N}</div> */}
+                                    {/* <div>Subject Link: {payloadItem.SubjectLink.S}</div> */}
+                                    {/* Render assignments */}
+                                    <div>Assignments:</div>
+                                    {payloadItem.Assignments.L.map((assignment, idx) => (
+                                        <div key={idx}>
+                                            <div>Assignment Name: {assignment.M.AssignmentName.S}</div>
+                                            <div>Percentage Weight: {assignment.M.Percentage_Weight.N}</div>
+                                            {/* Add more assignment fields as needed */}
+                                            {/* Example: */}
+                                            {/* <div>Assignment Type: {assignment.M.AssignmentType.S}</div> */}
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
             }
-            
-        } else if (chatMessage.sender === 'user') {
+        }   
+        else if (chatMessage.sender === 'user') {
             return (
                 <div className="user-message-container">
                     <div className="user message">{chatMessage.message}</div>
