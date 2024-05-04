@@ -7,7 +7,8 @@ import sectionIcon from '../images/fi-rr-angle-down.svg';
 import sendIcon from '../images/fi-rs-paper-plane.svg';
 
 function CourseFilter({ handleFilterQuery }) {
-  const courseCodes = ['BP094P21 - Computer Science'];
+  const courseCodes = ['BP094P21'];
+  const courseNames = ["Computer Science"];
   const [selectedCourseCode, setSelectedCourseCode] = useState(courseCodes[0]); // Initialize the selected course code to the first one
   const [sendButtonDisabled, setSendButtonDisabled] = useState(true); // State to control the disabled state of the "Send" button
 
@@ -50,10 +51,10 @@ function CourseFilter({ handleFilterQuery }) {
     for (const a of assignmentsState) {
       console.log(" a is: ", a)
       if (a.state === 1) {
-        queries_list.push("Which course electives have " + a.name + "?");
+        queries_list.push("Which course electives " + selectedCourseCode + " have " + a.name + "?");
       }
       if (a.state === 2) {
-        queries_list.push("What course electives don't have any " + a.name + "?");
+        queries_list.push("What course electives in "+ selectedCourseCode + " don't have any " + a.name + "?");
       }
     }
 
@@ -83,7 +84,7 @@ function CourseFilter({ handleFilterQuery }) {
                   checked={selectedCourseCode === code} // Set checked attribute based on selected course code
                   onChange={() => handleCourseCodeSelection(code)}
                 />
-                <label htmlFor={code}>{code}</label>
+                <label htmlFor={code}>{code} - {courseNames[index]}</label>
               </div>
             ))}
           </div>
@@ -123,7 +124,7 @@ function CourseFilter({ handleFilterQuery }) {
             </button> */}
           </div>
 
-          
+
         </div>
       )}
     </div>
