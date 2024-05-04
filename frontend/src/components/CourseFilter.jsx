@@ -74,7 +74,7 @@ function CourseFilter({ handleFilterQuery }) {
           <div className='section-subheading'>For</div>
           <div className='checkboxes-main-div'>
             {courseCodes.map((code, index) => (
-              <div key={index} onClick={() => handleCourseCodeSelection(code)}>
+              <div key={index} onClick={() => handleCourseCodeSelection(code)} className='checkbox-field-div'>
                 <input
                   type='radio'
                   id={code}
@@ -116,11 +116,14 @@ function CourseFilter({ handleFilterQuery }) {
           </div>
           {/* Send Button */}
           <div className='flexy-end'>
-            <button onClick={handleSendFilter} disabled={sendButtonDisabled} title={sendButtonDisabled ? "Please choose a course code" : ""}>
+            <img className='send-filter-btn' onClick={handleSendFilter} src={sendIcon}/> 
+
+            {/* <button onClick={handleSendFilter} disabled={sendButtonDisabled} title={sendButtonDisabled ? "Please choose a course code" : ""}>
               Send
-              {/* <img className='send-filter-btn' src={sendIcon}/> */}
-            </button>
+            </button> */}
           </div>
+
+          
         </div>
       )}
     </div>
