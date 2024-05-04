@@ -15,12 +15,34 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
     const renderContent = () => {
         if (chatMessage.sender === 'bot') {
             if (chatMessage.contentType === 'PlainText') {
+                const parts = chatMessage.message.split(/(http:\/\/\S+)/);
                 return (
                     <div className="bot-main-div">
                         <div><img className="botIcon" src={botIcon} alt="Bot Icon" /></div>
-                        <div className="bot message botmessages-div">{chatMessage.message}</div>
+                        <div className="bot message botmessages-div">
+                            {parts.map((part, index) => {
+                                if (part.startsWith('http://')) {
+                                    return (
+                                        <a key={index} href={part} target="_blank" rel="noopener noreferrer">
+                                            {part}
+                                        </a>
+                                    );
+                                } else {
+                                    return <span key={index}>{part}</span>;
+                                }
+                            })}
+                            {/* Render Subject Code, Subject Name, and Subject Link */}
+                            <div>
+                                <span className="subject-code">{chatMessage.subjectCode}</span>
+                                <span className="subject-name">{chatMessage.subjectName}</span>
+                                <a className="subject-link" href={chatMessage.subjectLink} target="_blank" rel="noopener noreferrer">
+                                    {chatMessage.subjectLink}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 );
+
             } else if (chatMessage.contentType === 'ImageResponseCard') {
                 return (
                     <div className="bot-main-div">
