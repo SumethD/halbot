@@ -32,15 +32,19 @@ function CourseFilter({handleFilterQuery}) {
     console.log("Semester 2 checked:", semester2Checked);
 
     const queries_list = [];
-
+    
     for (const a of assignmentsState) {
+      console.log(" a is: ", a)
       if (a.state === 1) {
         queries_list.push("Which course electives have " + a.name + "?");
       }
       if (a.state === 2) {
         queries_list.push("What course electives don't have any " + a.name + "?");
+        
       }
     }
+
+    console.log(" q list: ", queries_list)
     handleFilterQuery(queries_list);
   };
   

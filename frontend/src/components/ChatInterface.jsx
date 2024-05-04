@@ -73,7 +73,8 @@ const ChatInterface = () => {
         
     };
 
-    //  method to send message to bot and receive back
+    //  method to send message to bot and receive back (NO SAVE TO chat)
+    // meant for filter queries
     const sendBotQuery = async (query) => {
         if (query.trim() !== '') {
 
@@ -90,16 +91,50 @@ const ChatInterface = () => {
             }));
     
             console.log(botMessages);
-    
+            
+            return botMessages;
             
         }
     };
 
     // seperate method for multiple queiries and intersection 
     const handleFilterQuery = async (queryList) => {
-        for (const q in queryList){
+
+        let commonCourses = []; // Array to store common courses
+
+        console.log(queryList)
+        for (const i in queryList){
+            console.log("this si the query passed: ", queryList[i]);
+            const q = queryList[i];
             
+            const botReplies = await sendBotQuery(q);
+
+            // first message is just confirmation of request message
+            const query_confirmation_msg = botReplies[0].content
+
+            // second message has raw list of courses (in map form) befitting of query
+            const course_list = JSON.parse(botReplies[1].content)
+            
+
+            console.log("bot messages : ", botReplies);
+            console.log(query_confirmation_msg)
+            console.log(course_list)
+
+            // If it's the first query, set the commonCourses array to the courses from the first query
+            if (i === '0') {
+                commonCourses = course_list;
+            } else {
+                // Otherwise, find the intersection with the courses from the current query
+                commonCourses = commonCourses.filter(course => 
+                    course_list.some(courseItem => courseItem.SubjectCode.S === course.SubjectCode.S)
+                );
+                console.log("common courses", commonCourses);
+            }
         }
+
+        console.log("Common courses:", commonCourses);
+        
+        
     };
 
     return (
