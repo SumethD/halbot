@@ -1,6 +1,7 @@
 import React from 'react';
 import botIcon from "../../images/boticon.png";
 
+
 const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
     if (chatMessage.sender === 'bot' && chatMessage.contentType === 'ImageResponseCard')
         console.log("hm", chatMessage.imageResponseCard)
@@ -77,13 +78,13 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
                                     {taskA !== "" && payloadItem.Assignments && (
                                         <div>
                                             {/* Display assignments if taskA is not an empty string */}
-                                            <div>
+                                            <div className='assignments-div'>
                                                 {payloadItem.Assignments.L.map((assignment, index) => {
                                                     const assignmentType = assignment.M.AssignmentType.S;
                                                     if (assignmentType.includes(taskA)) {
                                                         return (
-                                                            <div key={index}>
-                                                                <span> Task {index+1}: {capitalizeFirstLetter(taskA)} - {assignment.M.Percentage_Weight.N}%</span>
+                                                            <div key={index} className='assignment-bubble'>
+                                                                Task {index+1}: {capitalizeFirstLetter(taskA)} - {assignment.M.Percentage_Weight.N}%
                                                             </div>
                                                         );
                                                     } else {
