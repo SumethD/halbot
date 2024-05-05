@@ -12,6 +12,10 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
         handlePopUpClick(value);
     };
 
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
     const renderContent = () => {
         if (chatMessage.sender === 'bot') {
             if (chatMessage.contentType === 'PlainText') {
@@ -47,27 +51,54 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
                 // process dyanmo maps and data to display divs of the different course codes and their names
                 // Process CustomPayload data
                 const customPayloadData = JSON.parse(chatMessage.content);
+
+
+                // for displaying assingment %
+                const intent = chatMessage.intent.name;
+                const slots = chatMessage.intent.slots
+                let taskA = ""
+
+                if (intent==='CourseElectivesWithA'){
+                    taskA = slots.Task_A.value.interpretedValue
+                }
+
                 return (
                     <div className="bot-main-div">
                         <div><img className="botIcon" src={botIcon} alt="Bot Icon" /></div>
                         <div className='botmessages-div bot message '>
-                            {/* Render each custom payload item aka subjecy */}
-                            
+                            {/* Render each custom payload item aka subject */}
                             {customPayloadData.map((payloadItem, index) => (
                                 <button 
-                                className='subject-div' 
-                                key={index} 
-                                onClick={() => window.open(payloadItem.SubjectLink.S, '_blank')}
+                                    className='subject-div' 
+                                    key={index} 
+                                    onClick={() => window.open(payloadItem.SubjectLink.S, '_blank')}
                                 >
                                     <div>{payloadItem.SubjectCode.S} - {payloadItem.SubjectName.S}</div>
-                                    
-                                    {/* <div>Subject Link: {payloadItem.SubjectLink.S}</div> */}
-                                    
+                                    {taskA !== "" && payloadItem.Assignments && (
+                                        <div>
+                                            {/* Display assignments if taskA is not an empty string */}
+                                            <div>
+                                                {payloadItem.Assignments.L.map((assignment, index) => {
+                                                    const assignmentType = assignment.M.AssignmentType.S;
+                                                    if (assignmentType.includes(taskA)) {
+                                                        return (
+                                                            <div key={index}>
+                                                                <span> Task {index+1}: {capitalizeFirstLetter(taskA)} - {assignment.M.Percentage_Weight.N}%</span>
+                                                            </div>
+                                                        );
+                                                    } else {
+                                                        return null;
+                                                    }
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
                                 </button>
                             ))}
                         </div>
                     </div>
                 );
+                
             }
         }   
         else if (chatMessage.sender === 'user') {

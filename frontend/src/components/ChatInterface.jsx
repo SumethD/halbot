@@ -33,10 +33,13 @@ const ChatInterface = () => {
             console.log("res: ",res);
     
             if (!res || !res.messages) return;
+
+            const intent = res.sessionState.intent;
     
             const botMessages = res.messages.map(message => ({
                 sender: 'bot',
                 message: message.content,
+                intent: intent,
                 ...message
             }));
     
@@ -82,10 +85,14 @@ const ChatInterface = () => {
             console.log("res: ",res);
     
             if (!res || !res.messages) return;
-    
+
+            const intent = res.sessionState.intent;
+            console.log("the intent is: ",intent);
+
             const botMessages = res.messages.map(message => ({
                 sender: 'bot',
                 message: message.content,
+                intent: intent,
                 ...message
             }));
     
