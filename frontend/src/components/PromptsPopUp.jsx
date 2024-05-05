@@ -30,6 +30,7 @@ const PromptsPopUp = ({handlePopUpClick, handleFilterQuery}) => {
                     </div>
                     <CourseFilter
                         handleFilterQuery={handleFilterQuery}
+                        handlePopUpClick = {handlePopUpClick}
                     ></CourseFilter>
                     <div className='prompt-div' onClick={() => handleClick("What course electives have exams?")}>
                         What course electives have exams?

@@ -6,7 +6,7 @@ import empty from '../images/empty.png';
 import sectionIcon from '../images/fi-rr-angle-down.svg';
 import sendIcon from '../images/fi-rs-paper-plane.svg';
 
-function CourseFilter({ handleFilterQuery }) {
+function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
   const courseCodes = ['BP094P21'];
   const courseNames = ["Computer Science"];
   const [selectedCourseCode, setSelectedCourseCode] = useState(courseCodes[0]); // Initialize the selected course code to the first one
@@ -51,15 +51,29 @@ function CourseFilter({ handleFilterQuery }) {
     for (const a of assignmentsState) {
       console.log(" a is: ", a)
       if (a.state === 1) {
-        queries_list.push("Which course electives " + selectedCourseCode + " have " + a.name + "?");
+        queries_list.push("Which course electives in " + selectedCourseCode + " have " + a.name + "?");
       }
       if (a.state === 2) {
-        queries_list.push("What course electives in "+ selectedCourseCode + " don't have any " + a.name + "?");
+        queries_list.push("What course electives in "+ selectedCourseCode + " have no " + a.name + "?");
       }
     }
 
     console.log(" q list: ", queries_list)
-    handleFilterQuery(queries_list);
+
+    if (queries_list.length==0){
+      console.log("filter is empty aka only course code specified");
+      const query = "What course electives are there in " + selectedCourseCode + " ?";
+      handlePopUpClick(query);
+    } 
+    else if (queries_list.length ==1){
+      console.log("only 1 filter option specified lessgoo")
+      const query = queries_list[0];
+      handlePopUpClick(query);
+
+    } else {
+      console.log("multiple filters, filtering..")
+      handleFilterQuery(queries_list);
+    }
   };
 
   return (

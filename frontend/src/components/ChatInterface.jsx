@@ -74,7 +74,7 @@ const ChatInterface = () => {
     };
 
     //  method to send message to bot and receive back (NO SAVE TO chat)
-    // meant for filter queries
+    // meant for FILTER queries only
     const sendBotQuery = async (query) => {
         if (query.trim() !== '') {
 
