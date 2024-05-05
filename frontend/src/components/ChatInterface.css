@@ -11,14 +11,14 @@
     transform: translate(-70%, -50%);
     padding: 2.5%;
     height: 70%;
-    width: 60%;
+    width: 52%;
     justify-content: flex-end;
     
 }
 
 /* Chat whole */
 .chat-interface {
-    width: 60%;
+    width: 52%;
     display: flex;
     flex-direction: column;
     height: 100%;
