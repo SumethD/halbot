@@ -10,6 +10,7 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
   const courseCodes = ['BP094P21'];
   const courseNames = ["Computer Science"];
   const [selectedCourseCode, setSelectedCourseCode] = useState(courseCodes[0]); // Initialize the selected course code to the first one
+  // to do, but technically dont need anymore??
   const [sendButtonDisabled, setSendButtonDisabled] = useState(true); // State to control the disabled state of the "Send" button
 
   useEffect(() => {
@@ -47,14 +48,18 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
     console.log("Semester 2 checked:", semester2Checked);
 
     const queries_list = [];
+    let userMessage = "What are the course electives in " + selectedCourseCode;
+    let filterOptions = [];
 
     for (const a of assignmentsState) {
       console.log(" a is: ", a)
       if (a.state === 1) {
         queries_list.push("Which course electives in " + selectedCourseCode + " have " + a.name + "?");
+        filterOptions.push(a.name);
       }
       if (a.state === 2) {
         queries_list.push("What course electives in "+ selectedCourseCode + " have no " + a.name + "?");
+        filterOptions.push("no " + a.name);
       }
     }
 
@@ -72,7 +77,11 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
 
     } else {
       console.log("multiple filters, filtering..")
-      handleFilterQuery(queries_list);
+      userMessage += " with " + filterOptions.join(", ");
+      const subjectsExistMSG = "Here are the course electives in " + selectedCourseCode + " with " + filterOptions.join(", ");
+      const noSubjectsExistMSG = "There are NO course electives in " + selectedCourseCode + " with " + filterOptions.join(", ");
+      const botReply = [subjectsExistMSG, noSubjectsExistMSG]
+      handleFilterQuery(queries_list, userMessage, botReply);
     }
   };
 

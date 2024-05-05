@@ -97,7 +97,14 @@ const ChatInterface = () => {
     };
 
     // seperate method for multiple queiries and intersection 
-    const handleFilterQuery = async (queryList) => {
+    const handleFilterQuery = async (queryList, userMessage, botReply) => {
+        // render user message in chat history
+        const newUserMessage = {
+            sender: 'user',
+            message: userMessage
+        };
+        setChatHistory(prevChatHistory => [...prevChatHistory, newUserMessage]);
+    
 
         let commonCourses = []; // Array to store common courses
 
@@ -132,7 +139,43 @@ const ChatInterface = () => {
         }
 
         console.log("Common courses:", commonCourses);
+        if (commonCourses.length === 0){
+            const botMessage = {
+                sender: 'bot',
+                message: botReply[1],
+                content: botReply[1], 
+                contentType: 'PlainText'
+            };
+
+            // render bot message in chat history
+            setChatHistory(prevChatHistory => [...prevChatHistory, botMessage]);
+
+        } 
+        else {
+            commonCourses = JSON.stringify(commonCourses)
+
+            const botMessage = {
+                sender: 'bot',
+                message: botReply[0],
+                content: botReply[0], 
+                contentType: 'PlainText'
+            };
+    
+            const commonCoursesMessage = {
+                sender: 'bot',
+                message: commonCourses,
+                content: commonCourses,
+                contentType: 'CustomPayload'
+            };
+
+            // render bot message in chat history
+            setChatHistory(prevChatHistory => [...prevChatHistory, botMessage]);
+
+            // render common courses in chat history 
+            setChatHistory(prevChatHistory => [...prevChatHistory, commonCoursesMessage]);
+        }
         
+
         
     };
 
