@@ -4,7 +4,6 @@ import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
-import botIcon from "../images/boticon.png";
 
 const ChatInterface = () => {
     const [inputMessage, setInputMessage] = useState('');

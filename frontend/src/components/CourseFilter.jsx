@@ -60,12 +60,12 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
 
     console.log(" q list: ", queries_list)
 
-    if (queries_list.length==0){
+    if (queries_list.length===0){
       console.log("filter is empty aka only course code specified");
       const query = "What course electives are there in " + selectedCourseCode + " ?";
       handlePopUpClick(query);
     } 
-    else if (queries_list.length ==1){
+    else if (queries_list.length===1){
       console.log("only 1 filter option specified lessgoo")
       const query = queries_list[0];
       handlePopUpClick(query);
