@@ -185,6 +185,8 @@
     display: flex;
     flex-wrap: wrap;
     padding-top: 10px;
+    gap: 10px;
+    justify-content: center;
 }
 
 .assignment-bubble{

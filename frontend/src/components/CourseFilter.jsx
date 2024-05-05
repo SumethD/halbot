@@ -6,7 +6,7 @@ import empty from '../images/empty.png';
 import sectionIcon from '../images/fi-rr-angle-down.svg';
 import sendIcon from '../images/fi-rs-paper-plane.svg';
 
-function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
+function CourseFilter({ handleFilterQuery , handlePopUpClick}) {
   const courseCodes = ['BP094P21'];
   const courseNames = ["Computer Science"];
   const [selectedCourseCode, setSelectedCourseCode] = useState(courseCodes[0]); // Initialize the selected course code to the first one
@@ -25,9 +25,9 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
   };
 
   const [assignmentsState, setAssignmentsState] = useState([
-    { name: 'Exams', state: 0 }, // 0: unchecked, 1: checked, 2: intermediate
-    { name: 'Group Work', state: 0 },
-    { name: 'Presentations', state: 0 }
+    { name: 'Exams', value: 'exam', state: 0 }, // 0: unchecked, 1: checked, 2: intermediate
+    { name: 'Group Work', value: 'group', state: 0 },
+    { name: 'Presentations', value: 'presentation', state: 0 }
   ]);
 
   const toggleAssignmentState = (index) => {
@@ -50,12 +50,16 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
     const queries_list = [];
     let userMessage = "What are the course electives in " + selectedCourseCode;
     let filterOptions = [];
+    let intent_name = "AnyOldIntent";
+    let slots = []; 
 
     for (const a of assignmentsState) {
       console.log(" a is: ", a)
       if (a.state === 1) {
         queries_list.push("Which course electives in " + selectedCourseCode + " have " + a.name + "?");
         filterOptions.push(a.name);
+        intent_name = 'FilterWithA';
+        slots.push(a.value);
       }
       if (a.state === 2) {
         queries_list.push("What course electives in "+ selectedCourseCode + " have no " + a.name + "?");
@@ -81,7 +85,12 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick }) {
       const subjectsExistMSG = "Here are the course electives in " + selectedCourseCode + " with " + filterOptions.join(", ");
       const noSubjectsExistMSG = "There are NO course electives in " + selectedCourseCode + " with " + filterOptions.join(", ");
       const botReply = [subjectsExistMSG, noSubjectsExistMSG]
-      handleFilterQuery(queries_list, userMessage, botReply);
+      const intent = {
+        name: intent_name,
+        slots: slots
+      };
+      console.log("the FINAL intent object made is: ", intent);
+      handleFilterQuery(queries_list, userMessage, botReply, intent);
     }
   };
 

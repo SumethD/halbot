@@ -84,7 +84,10 @@ const ChatInterface = () => {
     
             console.log("res: ",res);
     
-            if (!res || !res.messages) return;
+            if (!res || !res.messages){
+                console.log("res is undefined or something")
+                return;
+            } 
 
             const intent = res.sessionState.intent;
             console.log("the intent is: ",intent);
@@ -104,7 +107,7 @@ const ChatInterface = () => {
     };
 
     // seperate method for multiple queiries and intersection 
-    const handleFilterQuery = async (queryList, userMessage, botReply) => {
+    const handleFilterQuery = async (queryList, userMessage, botReply, intent) => {
         // render user message in chat history
         const newUserMessage = {
             sender: 'user',
@@ -122,6 +125,10 @@ const ChatInterface = () => {
             
             const botReplies = await sendBotQuery(q);
 
+            if (!botReplies){
+                console.log("bot replies undefined, returning")
+                return;
+            }
             // first message is just confirmation of request message
             const query_confirmation_msg = botReplies[0].content
 
@@ -167,11 +174,13 @@ const ChatInterface = () => {
                 content: botReply[0], 
                 contentType: 'PlainText'
             };
-    
+            console.log("the PASSED on intent object made is: ", intent);
+            
             const commonCoursesMessage = {
                 sender: 'bot',
                 message: commonCourses,
                 content: commonCourses,
+                intent: intent,
                 contentType: 'CustomPayload'
             };
 
