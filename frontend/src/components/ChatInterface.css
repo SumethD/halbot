@@ -161,9 +161,10 @@
     padding: 1% 10%;
 }
 
+/* clickable divs containing individual subject info */
 .subject-div {
     margin: 5px 12px;
-    padding: 8px 30px;
+    padding: 8px 10px;
     background-color: white;
     border: solid 1px var(--primary);
     border-radius: 5px;
