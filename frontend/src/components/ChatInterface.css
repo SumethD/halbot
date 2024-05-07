@@ -9,7 +9,7 @@
     transform: translate(-70%, -50%);
     padding: 2.5%;
     height: 70%;
-    width: 55%;
+    width: 100%;
     justify-content: flex-end;
 }
 
@@ -37,6 +37,25 @@
 .message {
     padding: 8px;
     border-radius: 10px;
+}
+
+button.message-button {
+    outline: none;
+    border: none;
+}
+
+button.message-button:hover {
+    border: 1px;
+}
+
+
+.message-button {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: calc(40px + 30px);
+    /* extra space under last bot message */
+    background-color: var(--lightgrey);
 }
 
 /* main container wrapping user text */

@@ -2,51 +2,80 @@ import React, {useState, useRef, useEffect} from 'react';
 import './ChatInterface.css'; // Import CSS file for styling
 import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
-import botIcon from '../images/boticon.png';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
+import {v4} from "uuid";
 
 const ChatInterface = () => {
+    const [sessionId, setSessionId] = useState();
     const [inputMessage, setInputMessage] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
 
     const chatbox = useRef(null);
+    useEffect(() => {
+        if(!sessionId) {
+            const chatId = v4()
+            setChatHistory([
+                ...chatHistory,
+                {
+                    sender: 'system',
+                    message: `Your chat id is: ${chatId}`
+                }
+            ])
+            setSessionId(chatId);
+        }
+    }, [sessionId])
     useEffect(() => chatbox.current.scrollIntoView(false), [chatHistory]);
 
     //const example_response = ["Hello I am Hal!", "idk"];
     const example_response = "Hello I";
 
+    const handleBotResponse = (res) => {
+        console.log(res);
+
+        if (!res || !res.messages) return;
+
+        const botMessages = res.messages;
+
+
+
+        const mappedMessages = botMessages.map(message => {
+            let builtMessage = {
+                sender: 'bot',
+                message: message.content,
+            }
+
+            if(message.imageResponseCard) {
+                builtMessage  = {
+                    ...builtMessage,
+                    message: message.imageResponseCard.title,
+                    buttons: message.imageResponseCard.buttons
+                }
+            }
+
+            return builtMessage;
+        });
+
+        console.log(mappedMessages)
+
+        setChatHistory((prev) => [...prev, ...mappedMessages]);
+        setInputMessage('');
+    }
 
     // method for send through button or press enter
     const handleSendMessage = async () => {
         if (inputMessage.trim() !== '') {
-            setChatHistory([...chatHistory,
+            setChatHistory([
+                ...chatHistory,
                 {
                     sender: 'user',
                     message: inputMessage
                 }
             ]);
 
-            const res = await sendMessage(inputMessage);
+            const res = await sendMessage(inputMessage, sessionId);
 
-            console.log(res);
-
-            if (!res || !res.messages) return;
-
-            const botMessages = res.messages;
-
-            const mappedMessages = botMessages.map(message => (
-                {
-                    sender: 'bot',
-                    message: message.content,
-                    ...message
-                }
-            ));
-
-            console.log(mappedMessages)
-
-            setChatHistory([...chatHistory, ...mappedMessages]);
-            setInputMessage('');
+            handleBotResponse(res);
         }
     };
 
@@ -78,7 +107,7 @@ const ChatInterface = () => {
                 <div className="header-box">HAL BOT</div>
                 <div className="chat-history">
                     <div ref={chatbox}>
-                        {chatHistory.map((message, index) => (
+                        {chatHistory &&  chatHistory.map((message, index) => (
                            <ChatBubble key={index} chatMessage={message} />
                         ))}
                     </div>
@@ -95,7 +124,6 @@ const ChatInterface = () => {
                         />
                         <button onClick={handleSendMessage} className="send-button">Send</button>
                     </div>
-
                 </div>
             </div>
         </div>

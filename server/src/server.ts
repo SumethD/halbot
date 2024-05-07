@@ -1,13 +1,13 @@
 import { LexRuntimeV2Client, RecognizeTextCommand } from "@aws-sdk/client-lex-runtime-v2";
 
 
-const sendMessageToLex = async (inputText) => {
+const sendMessageToLex = async (inputText, sessionId?) => {
     const client = new LexRuntimeV2Client({ region: "ap-southeast-2" });
 
     const params = {
         botId: '0G6W842ZWL',
         localeId: 'en_US',
-        sessionId: 'ablkhas-aslkhda',
+        sessionId: sessionId ?? 'news-aslkhda',
         botAliasId: 'TSTALIASID',
         botName: 'Hal_R_2',
         text: inputText,
@@ -32,6 +32,7 @@ export const handler = async (event) => {
     let statusCode = '200';
     const headers = {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     };
     // TODO implement
     const response = {
@@ -52,8 +53,8 @@ export const handler = async (event) => {
         }
     }
 
-    const {message} = JSON.parse(event.body);
-    const res = await sendMessageToLex(message);
+    const {message, sessionId} = JSON.parse(event.body);
+    const res = await sendMessageToLex(message, sessionId);
     console.log('data retrievied', JSON.stringify(res, null, 2));
 
     return {
