@@ -52,6 +52,7 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick}) {
     let filterOptions = [];
     let intent_name = "AnyOldIntent";
     let slots = []; 
+    let sem_message = "";
 
     for (const a of assignmentsState) {
       console.log(" a is: ", a)
@@ -65,6 +66,21 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick}) {
         queries_list.push("What course electives in "+ selectedCourseCode + " have no " + a.name + "?");
         filterOptions.push("no " + a.name);
       }
+    }
+
+    if (semester1Checked && semester2Checked) {
+      sem_message = " in semester 1 and 2";
+      queries_list.push("Which course electives in "+ selectedCourseCode + " are run in semester 1?");
+      queries_list.push("Which course electives in "+ selectedCourseCode + " are run in semester 2?");
+      
+    } else if (semester1Checked) {
+      sem_message = " in semester 1";
+      queries_list.push("Which course electives in "+ selectedCourseCode + " are run in semester 1?");
+
+    } else if (semester2Checked) {
+      sem_message = " in semester 2";
+      queries_list.push("Which course electives in "+ selectedCourseCode + " are run in semester 2?");
+
     }
 
     console.log(" q list: ", queries_list)
@@ -81,9 +97,20 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick}) {
 
     } else {
       console.log("multiple filters, filtering..")
-      userMessage += " with " + filterOptions.join(", ");
-      const subjectsExistMSG = "Here are the course electives in " + selectedCourseCode + " with " + filterOptions.join(", ");
-      const noSubjectsExistMSG = "There are NO course electives in " + selectedCourseCode + " with " + filterOptions.join(", ");
+
+      let subjectsExistMSG = "Here are the course electives in " + selectedCourseCode 
+      let noSubjectsExistMSG = "There are NO course electives in " + selectedCourseCode 
+      
+      if (filterOptions.length !== 0){
+        userMessage += " with " + filterOptions.join(", ");
+        subjectsExistMSG +=  " with " + filterOptions.join(", ") 
+        noSubjectsExistMSG +=  " with " + filterOptions.join(", ") 
+      }
+
+      userMessage += sem_message;
+      subjectsExistMSG += sem_message;
+      noSubjectsExistMSG += sem_message;
+      
       const botReply = [subjectsExistMSG, noSubjectsExistMSG]
       const intent = {
         name: intent_name,
@@ -97,7 +124,7 @@ function CourseFilter({ handleFilterQuery , handlePopUpClick}) {
   return (
     <div className='filter-main-div'>
       <div className='flex-heading' onClick={() => setFilterOpen(!filterOpen)}>
-        <div className='filter-heading'>Show me Course Electives </div>
+        <div className='filter-heading'>Show me course electives that are .. </div>
         <div className={`icon-container ${filterOpen ? 'rotate-icon rotate-icon-opened' : 'rotate-icon'}`}>
           <img src={sectionIcon} alt="Section Icon" />
         </div>

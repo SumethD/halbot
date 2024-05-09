@@ -62,7 +62,6 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
     
     const renderMultipleTasks = (payloadItem, tasks) => {
         console.log(payloadItem);
-        console.log("these be the tasks: ", tasks);
     
         const assignmentsList = [];
     
@@ -83,8 +82,6 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
                 });
             }
         });
-    
-        console.log("Assignments List:", assignmentsList);
     
         return (
             <div className='assignments-div'>
@@ -112,8 +109,8 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
             taskA = slots.Task_A.value.interpretedValue;
         }
         if (intent === 'FilterWithA'){
+            //  tasks is a list of all the "with task A" slots values. 
             tasks = slots;
-            console.log("tasks is: ", tasks)
         }
 
 

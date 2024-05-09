@@ -28,24 +28,22 @@ const PromptsPopUp = ({handlePopUpClick, handleFilterQuery}) => {
                     <div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
                         What course electives can I take?
                     </div>
+
                     <CourseFilter
                         handleFilterQuery={handleFilterQuery}
                         handlePopUpClick = {handlePopUpClick}
                     ></CourseFilter>
+        
+                    <div className='prompt-div' onClick={() => handleClick("What are my classes this semester?")}>
+                        What are my classes this semester?
+                    </div>
+                    <div className='prompt-div' onClick={() => handleClick("What are my subjects for this year?")}>
+                        What are my subjects for this year?
+                    </div>
                     <div className='prompt-div' onClick={() => handleClick("What course electives have exams?")}>
                         What course electives have exams?
                     </div><div className='prompt-div' onClick={() => handleClick("What course electives don't have exams?")}>
                         What course electives don't have exams?
-                    </div><div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
-                        What course electives can I take?
-                    </div><div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
-                        What course electives can I take?
-                    </div><div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
-                        What course electives can I take?
-                    </div><div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
-                        What course electives can I take?
-                    </div><div className='prompt-div' onClick={() => handleClick("What course electives can I take?")}>
-                        What course electives can I take?
                     </div>
                 </div>
                 </div>
