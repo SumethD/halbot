@@ -2,9 +2,10 @@ import React, {useState, useRef, useEffect} from 'react';
 import './ChatInterface.css'; // Import CSS file for styling
 import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
-import botIcon from '../images/boticon.png';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
+import botIcon from "../images/boticon.png";
+
 
 const ChatInterface = () => {
     const [inputMessage, setInputMessage] = useState('');
@@ -13,49 +14,45 @@ const ChatInterface = () => {
     const chatbox = useRef(null);
     useEffect(() => chatbox.current.scrollIntoView(false), [chatHistory]);
 
-    //const example_response = ["Hello I am Hal!", "idk"];
-    const example_response = "Hello I";
+    // keeping an eye on chat history
+    useEffect(() => {
+        console.log("Chat History Updated:", chatHistory);
+    }, [chatHistory]);
 
-
-    // method for send through button or press enter
-    const handleSendMessage = async () => {
-        if (inputMessage.trim() !== '') {
-            setChatHistory([...chatHistory,
-                {
-                    sender: 'user',
-                    message: inputMessage
-                }
-            ]);
-
-            const res = await sendMessage(inputMessage);
-
-            console.log(res);
-
-            if (!res || !res.messages) return;
-
-            const botMessages = res.messages;
-
-            const mappedMessages = botMessages.map(message => (
-                {
-                    sender: 'bot',
-                    message: message.content,
-                    ...message
-                }
-            ));
-
-            console.log(mappedMessages)
-
-            setChatHistory([...chatHistory, ...mappedMessages]);
+    // main method to send message to bot AND save to chat history
+    const handleSendMessage = async (userMessage = inputMessage) => {
+        if (userMessage.trim() !== '') {
+            const newUserMessage = {
+                sender: 'user',
+                message: userMessage
+            };
+    
+            setChatHistory(prevChatHistory => [...prevChatHistory, newUserMessage]);
             setInputMessage('');
+            
+            const res = await sendMessage(userMessage);
+    
+            console.log("res: ",res);
+    
+            if (!res || !res.messages) return;
+    
+            const botMessages = res.messages.map(message => ({
+                sender: 'bot',
+                message: message.content,
+                ...message
+            }));
+    
+            console.log(botMessages);
+    
+            setChatHistory(prevChatHistory => [...prevChatHistory, ...botMessages]);
+            
         }
     };
+    
 
     // method for pop up send
     const handlePopUpClick = async (message) => {
-        if (message.trim() !== '') {
-            setChatHistory([...chatHistory, {user: message, bot: example_response, botType: typeof example_response}]);
-            setInputMessage('');
-        }
+        handleSendMessage(message);
     };
 
 
@@ -63,29 +60,69 @@ const ChatInterface = () => {
         setInputMessage(e.target.value);
     };
 
+    // method for enter
     const handleKeyPress = async (event) => {
+        console.log("type of input message ON ENTER ", typeof inputMessage, " here lie thy input: ", inputMessage)
         if (event.key === 'Enter') {
-            await handleSendMessage();
+            await handleSendMessage(inputMessage);
+        }
+    };
+
+    const handleButtonPress = async () => {
+        console.log("type of input message ", typeof inputMessage, " here lie thy input: ", inputMessage)
+        await handleSendMessage(inputMessage);
+        
+    };
+
+    //  method to send message to bot and receive back
+    const sendBotQuery = async (query) => {
+        if (query.trim() !== '') {
+
+            const res = await sendMessage(query);
+    
+            console.log("res: ",res);
+    
+            if (!res || !res.messages) return;
+    
+            const botMessages = res.messages.map(message => ({
+                sender: 'bot',
+                message: message.content,
+                ...message
+            }));
+    
+            console.log(botMessages);
+    
+            
+        }
+    };
+
+    // seperate method for multiple queiries and intersection 
+    const handleFilterQuery = async (queryList) => {
+        for (const q in queryList){
+            
         }
     };
 
     return (
         <div className="chat-main-div">
             <PromptsPopUp
-                handlePopUpClick={handlePopUpClick}
+                handlePopUpClick={handlePopUpClick} 
+                handleFilterQuery = {handleFilterQuery}
             ></PromptsPopUp>
             <div className="chat-interface">
-                <div className="header-box">HAL BOT</div>
+                <div className="header-box" style={{ fontFamily: 'Share Tech Mono, monospace' }}>HAL.BOT</div>
                 <div className="chat-history">
-                    <div ref={chatbox}>
-                        {chatHistory.map((message, index) => (
-                           <ChatBubble key={index} chatMessage={message} />
-                        ))}
-                    </div>
+                <div ref={chatbox}>
+                    {chatHistory.map((message, index) => (
+                        <ChatBubble key={index} chatMessage={message} handlePopUpClick={handlePopUpClick} />
+                    ))}
+                </div>  
                 </div>
+                {/* message input below: */}
                 <div className="message-div">
                     <div className="message-input">
                         <input
+                            style={{ fontFamily: 'Share Tech Mono, monospace' }}
                             type="text"
                             value={inputMessage}
                             onChange={handleInputChange}
@@ -93,7 +130,7 @@ const ChatInterface = () => {
                             className="input-field"
                             onKeyDown={handleKeyPress}
                         />
-                        <button onClick={handleSendMessage} className="send-button">Send</button>
+                        <button onClick={handleButtonPress} className="send-button" style={{ fontFamily: 'Share Tech Mono, monospace' }}>Send</button>
                     </div>
 
                 </div>

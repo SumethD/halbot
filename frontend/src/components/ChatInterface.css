@@ -1,5 +1,7 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Share+Tech+Mono&display=swap');
 /* chat + prompts */
+
 .chat-main-div{
     display: flex;
     gap: 20px;
@@ -9,13 +11,14 @@
     transform: translate(-70%, -50%);
     padding: 2.5%;
     height: 70%;
-    width: 55%;
+    width: 52%;
     justify-content: flex-end;
+    
 }
 
 /* Chat whole */
 .chat-interface {
-    width: 50%;
+    width: 52%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -37,12 +40,15 @@
 .message {
     padding: 8px;
     border-radius: 10px;
+    /* renders \n etc. */
+    white-space: pre-line;
 }
 
 /* main container wrapping user text */
 .user-message-container{
     /* padding = white space above user text */
     padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     justify-content: flex-end;
 }
@@ -76,6 +82,9 @@
 .bot-main-div{
     margin-right: 20%;
     display: flex;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* positioning first bot text to be south-east of bot icon + main div for response = multiple bot messages*/
@@ -146,6 +155,29 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
+
+/* image response card buttons */
+.bot-prompt-button{
+    margin-top: 8px;
+    padding: 2%;
+    width: 100%;
+}
+
+.bot-prompt-buttons-div{
+    padding: 1% 10%;
+}
+
+.subject-div {
+    margin: 5px 12px;
+    padding: 8px 30px;
+    background-color: white;
+    border: solid 1px var(--primary);
+    border-radius: 5px;
+}
+
+.subject-div:hover{
+    background-color: var(--secondary);
+}
   
 
 /* Media query for normal laptop screens */
@@ -162,3 +194,4 @@
         font-size: 10px;
     }
 }
+

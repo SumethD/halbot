@@ -1,0 +1,93 @@
+.filter-main-div{
+    background-color: var(--lightgrey);
+    /* background-color: white; */
+    border-radius: 10px;
+    padding: 3%;
+    margin: 0px 25px;
+    font-size: 15px;
+}
+
+.flex-heading{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+}
+
+.filter-heading {
+    padding-bottom: 5px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.section-subheading{
+    padding: 0 20px;
+    color: var(--primary);
+    font-weight: 600;
+}
+.checkbox-img{
+    width: 16px;
+    height: 16px;
+}
+
+.sem-checkbox{
+    width: 16px; /* Set width */
+    height: 16px; /* Set height */
+}
+
+.sem-checkbox:checked{
+    background-color: green;
+    border-color: green;
+}
+
+/* Individual check boxes */
+.checkbox-field-div{
+    font-size: 14px;
+    display: inline-flex;
+    gap: 10px;
+    padding: 8px 15px;
+    background-color: white;
+    border-radius: 20px;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--primary);
+}
+
+.checkbox-field-div:hover{
+    background-color: var(--secondary);
+}
+
+/* all the checkbox options div */
+.checkboxes-main-div{
+    display: flex;
+    gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.send-filter-btn{
+    padding: 2%;
+    border-radius: 10px;
+    border: solid 1px var(--primary);
+    background-color: var(--primary);
+
+}
+
+.send-filter-btn:hover{
+    background-color: var(--secondary);
+    cursor: pointer;
+}
+
+.flexy-end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.rotate-icon {
+    transition: transform 0.3s ease; /* Smooth transition for the rotation */
+}
+
+.rotate-icon-opened {
+    transform: rotate(180deg); /* Rotate the icon by 180 degrees */
+}

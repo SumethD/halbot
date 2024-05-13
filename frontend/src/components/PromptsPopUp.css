@@ -41,6 +41,8 @@
     border-radius: 10px;
     /* Fix for fluctuating chatbox sizes */
     flex: 1;
+    /* hide extra prompts */
+    overflow: hidden;
 }
 
 /* text header + 'i' icon */
@@ -54,16 +56,17 @@
     padding-left: 25px;
     color: white;
     flex: 1;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
-    text-align: center;
 }
 
 .prompts-main-div{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-top: 5%;
+    padding-top: 2%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 20px; /* Add padding to bottom to prevent content from sticking to the bottom */
 }
 
 .prompt-div{
@@ -73,4 +76,24 @@
     background-color: var(--lightgrey);
     text-align: center;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.prompt-div:hover{
+    background-color: var(--secondary);
+}
+
+/* Media query for normal laptop screens */
+@media screen and (max-width: 1300px) {
+    .header{
+        font-size: 14px;
+    }
+}
+
+
+/* Media query for phone screens */
+@media screen and (max-width: 767px) {
+    .input-field {
+        font-size: 10px;
+    }
 }
