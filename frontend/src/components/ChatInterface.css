@@ -11,14 +11,14 @@
     transform: translate(-70%, -50%);
     padding: 2.5%;
     height: 70%;
-    width: 52%;
+    width: 60%;
     justify-content: flex-end;
     
 }
 
 /* Chat whole */
 .chat-interface {
-    width: 52%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -82,9 +82,6 @@
 .bot-main-div{
     margin-right: 20%;
     display: flex;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
 }
 
 /* positioning first bot text to be south-east of bot icon + main div for response = multiple bot messages*/
@@ -167,18 +164,40 @@
     padding: 1% 10%;
 }
 
+/* clickable divs containing individual subject info */
 .subject-div {
     margin: 5px 12px;
-    padding: 8px 30px;
+    padding: 8px 10px;
     background-color: white;
     border: solid 1px var(--primary);
     border-radius: 5px;
 }
 
+/* whole subject div */
 .subject-div:hover{
     background-color: var(--secondary);
 }
   
+
+.subject-div:hover .assignment-bubble{
+    background-color: white;
+    border: solid 3px var(white);
+
+}   
+
+.assignments-div{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.assignment-bubble{
+    border: solid 3px var(--secondary);
+    border-radius: 15px;
+    padding: 5px 10px;
+}
 
 /* Media query for normal laptop screens */
 @media screen and (max-width: 1200px) {
