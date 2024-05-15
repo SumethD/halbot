@@ -5,6 +5,7 @@ import PromptsPopUp from './PromptsPopUp';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
 
+
 const ChatInterface = () => {
     const [inputMessage, setInputMessage] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
@@ -202,7 +203,7 @@ const ChatInterface = () => {
                 handleFilterQuery = {handleFilterQuery}
             ></PromptsPopUp>
             <div className="chat-interface">
-                <div className="header-box">HAL BOT</div>
+                <div className="header-box" style={{ fontFamily: 'Share Tech Mono, monospace' }}>HAL.BOT</div>
                 <div className="chat-history">
                 <div ref={chatbox}>
                     {chatHistory.map((message, index) => (
@@ -214,6 +215,7 @@ const ChatInterface = () => {
                 <div className="message-div">
                     <div className="message-input">
                         <input
+                            style={{ fontFamily: 'Share Tech Mono, monospace' }}
                             type="text"
                             value={inputMessage}
                             onChange={handleInputChange}
@@ -221,7 +223,7 @@ const ChatInterface = () => {
                             className="input-field"
                             onKeyDown={handleKeyPress}
                         />
-                        <button onClick={handleButtonPress} className="send-button">Send</button>
+                        <button onClick={handleButtonPress} className="send-button" style={{ fontFamily: 'Share Tech Mono, monospace' }}>Send</button>
                     </div>
 
                 </div>

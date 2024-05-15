@@ -1,0 +1,24 @@
+/* LoadingSpinner.css */
+
+.loading-spinner-container {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    align-items: center;
+    height: 100px; /* Adjust height as needed */
+    padding-left: 20px; /* Add left padding for the gap */
+}
+
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4602e5; /* Adjust spinner color */
+    border-radius: 50%;
+    width: 40px; /* Adjust width and height as needed */
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,7 +1,27 @@
 import React from 'react';
 import botIcon from "../../images/boticon.png";
+import { useEffect, useState } from 'react';
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.jsx"; 
 
 const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
+    if (chatMessage.sender === 'bot' && chatMessage.contentType === 'ImageResponseCard')
+        console.log("hm", chatMessage.imageResponseCard)
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        // Set loading to true when a new message is received
+        setIsLoading(true);
+
+        // Simulate message processing time (remove this setTimeout in your actual implementation)
+        const timeout = setTimeout(() => {
+            setIsLoading(false); // Set loading to false when message processing is complete
+        }, 2000); // Adjust the timeout duration as needed or remove it for real-time data processing
+
+        return () => clearTimeout(timeout); // Clean up timeout on component unmount
+    }, [chatMessage]); // Trigger effect on new chatMessage
+
+    
     const handleClick = (value) => {
         console.log("Div clicked with value:", value);
         handlePopUpClick(value);
@@ -151,6 +171,9 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
 
     const renderContent = () => {
         if (chatMessage.sender === 'bot') {
+            if (isLoading) {
+                return <LoadingSpinner />; // Render loading spinner while loading
+            }
             if (chatMessage.contentType === 'PlainText') {
                 return renderPlainText();
             } else if (chatMessage.contentType === 'ImageResponseCard') {

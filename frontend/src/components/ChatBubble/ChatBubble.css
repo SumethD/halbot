@@ -1,0 +1,27 @@
+.subject-info {
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.subject-code {
+    font-weight: bold;
+}
+
+.subject-name {
+    margin-top: 5px;
+}
+
+.subject-link {
+    margin-top: 5px;
+}
+
+.subject-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.subject-link a:hover {
+    text-decoration: underline;
+}
