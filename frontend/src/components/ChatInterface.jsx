@@ -39,7 +39,7 @@ const ChatInterface = () => {
             setChatHistory(prevChatHistory => [...prevChatHistory, newUserMessage]);
             setInputMessage('');
             
-            const res = await sendMessage(userMessage);
+            const res = await sendMessage(userMessage, sessionId);
     
             console.log("res: ",res);
     
@@ -91,7 +91,7 @@ const ChatInterface = () => {
     const sendBotQuery = async (query) => {
         if (query.trim() !== '') {
 
-            const res = await sendMessage(query);
+            const res = await sendMessage(query, sessionId);
     
             console.log("res: ",res);
     
@@ -223,7 +223,7 @@ const ChatInterface = () => {
                 </div>
                 {/* message input below: */}
                 <div className="message-div">
-                    {sessionId && <div className="session-id">Session ID: {sessionId}</div>}
+                    {/*{sessionId && <div className="session-id">Session ID: {sessionId}</div>}*/}
                     <div className="message-input">
                         <input
                             style={{ fontFamily: 'Share Tech Mono, monospace' }}
