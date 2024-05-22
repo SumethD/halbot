@@ -5,9 +5,10 @@ const client = axios.create({
     timeout: 5000
 })
 
-export const sendMessage = async (message) => {
+export const sendMessage = async (message, sessionId) => {
     try {
         const res = await client.post('/',{
+            sessionId,
             message
         });
 
@@ -18,6 +19,7 @@ export const sendMessage = async (message) => {
         console.log(e);
     }
 }
+
 
 
 export default client;
