@@ -223,7 +223,7 @@ const ChatInterface = () => {
                 </div>
                 {/* message input below: */}
                 <div className="message-div">
-                    {/*{sessionId && <div className="session-id">Session ID: {sessionId}</div>}*/}
+                    {/* {sessionId && <div className="session-id">Session ID: {sessionId}</div>} */}
                     <div className="message-input">
                         <input
                             style={{ fontFamily: 'Share Tech Mono, monospace' }}

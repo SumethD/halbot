@@ -149,7 +149,7 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
         // if not a list of subject maps 
         // aka rendering Majors or Minors or Combinations
         
-        if (intent === 'ListMajors'){
+        if (intent === 'ListMajors' || intent === 'ListMinors'){
             return renderMMList();
         }
 
