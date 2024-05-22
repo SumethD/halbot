@@ -40,8 +40,6 @@
 .message {
     padding: 8px;
     border-radius: 10px;
-    /* renders \n etc. */
-    white-space: pre-line;
 }
 
 /* main container wrapping user text */

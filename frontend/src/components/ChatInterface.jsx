@@ -4,13 +4,28 @@ import '../values/colours.css';
 import PromptsPopUp from './PromptsPopUp';
 import {sendMessage} from "../utils/client";
 import ChatBubble from "./ChatBubble/ChatBubble";
+import {v4} from "uuid";
 
 
 const ChatInterface = () => {
+    const [sessionId, setSessionId] = useState();
     const [inputMessage, setInputMessage] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
 
     const chatbox = useRef(null);
+    useEffect(() => {
+        if(!sessionId) {
+            const chatId = v4()
+            setChatHistory([
+                ...chatHistory,
+                {
+                    sender: 'system',
+                    message: `Your chat id is: ${chatId}`
+                }
+            ])
+            setSessionId(chatId);
+        }
+    }, [sessionId])
     useEffect(() => chatbox.current.scrollIntoView(false), [chatHistory]);
 
     // keeping an eye on chat history
@@ -225,7 +240,6 @@ const ChatInterface = () => {
                         />
                         <button onClick={handleButtonPress} className="send-button" style={{ fontFamily: 'Share Tech Mono, monospace' }}>Send</button>
                     </div>
-
                 </div>
             </div>
         </div>
