@@ -45,9 +45,6 @@ const PromptsPopUp = ({handlePopUpClick, handleFilterQuery}) => {
                     </div><div className='prompt-div' onClick={() => handleClick("What are the minors in my course?")}>
                         What are the minors in my course?
                     </div>
-                    <div className='prompt-div' onClick={() => handleClick("List all the majors and minors in my course")}>
-                        List all the majors and minors in my course
-                    </div>
                 </div>
                 </div>
             )}

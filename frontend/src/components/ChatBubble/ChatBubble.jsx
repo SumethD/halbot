@@ -147,8 +147,7 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
         let tasks = [];
     
         // if not a list of subject maps 
-        // aka rendering Majors or Minors or Combinations
-        
+        // aka rendering Major or Minor Lists
         if (intent === 'ListMajors' || intent === 'ListMinors'){
             return renderMMList();
         }
