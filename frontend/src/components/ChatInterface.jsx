@@ -13,19 +13,14 @@ const ChatInterface = () => {
     const [chatHistory, setChatHistory] = useState([]);
 
     const chatbox = useRef(null);
+
     useEffect(() => {
-        if(!sessionId) {
-            const chatId = v4()
-            setChatHistory([
-                ...chatHistory,
-                {
-                    sender: 'system',
-                    message: `Your chat id is: ${chatId}`
-                }
-            ])
+        if (!sessionId) {
+            const chatId = v4();
             setSessionId(chatId);
         }
-    }, [sessionId])
+    }, [sessionId]);
+
     useEffect(() => chatbox.current.scrollIntoView(false), [chatHistory]);
 
     // keeping an eye on chat history
@@ -228,6 +223,7 @@ const ChatInterface = () => {
                 </div>
                 {/* message input below: */}
                 <div className="message-div">
+                    {sessionId && <div className="session-id">Session ID: {sessionId}</div>}
                     <div className="message-input">
                         <input
                             style={{ fontFamily: 'Share Tech Mono, monospace' }}
@@ -242,6 +238,7 @@ const ChatInterface = () => {
                     </div>
                 </div>
             </div>
+
         </div>
 
     );
