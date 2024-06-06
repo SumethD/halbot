@@ -40,10 +40,10 @@ const PromptsPopUp = ({handlePopUpClick, handleFilterQuery}) => {
                     <div className='prompt-div' onClick={() => handleClick("What are my subjects for this year?")}>
                         What are my subjects for this year?
                     </div>
-                    <div className='prompt-div' onClick={() => handleClick("What course electives have exams?")}>
-                        What course electives have exams?
-                    </div><div className='prompt-div' onClick={() => handleClick("What course electives don't have exams?")}>
-                        What course electives don't have exams?
+                    <div className='prompt-div' onClick={() => handleClick("What are the majors in my course?")}>
+                        What are the majors in my course?
+                    </div><div className='prompt-div' onClick={() => handleClick("What are the minors in my course?")}>
+                        What are the minors in my course?
                     </div>
                 </div>
                 </div>

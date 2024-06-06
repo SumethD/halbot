@@ -116,6 +116,27 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
             </div>
         );
     };
+
+    const renderMMList = () => {
+        const MMJsonData = JSON.parse(chatMessage.content);
+
+        return (
+            <div className="bot-main-div">
+                <div><img className="botIcon" src={botIcon} alt="Bot Icon" /></div>
+                <div className='botmessages-div bot message '>
+                    {MMJsonData.map((MMJsonItem, index) => (
+                        <button
+                            className='subject-div' 
+                            key={index} 
+                        >
+                            <div>{MMJsonItem.type.S} - {MMJsonItem.name.S}</div>
+                            
+                        </button>
+                    ))}
+                </div>
+            </div>
+        );
+    }
     
     const renderCustomPayload = () => {
         
@@ -125,6 +146,13 @@ const ChatBubble = ({ chatMessage , handlePopUpClick }) => {
         let taskA = "";
         let tasks = [];
     
+        // if not a list of subject maps 
+        // aka rendering Major or Minor Lists
+        if (intent === 'ListMajors' || intent === 'ListMinors'){
+            return renderMMList();
+        }
+
+        // assuming its a list of subject maps that needs to be rendered
         if (intent==='CourseElectivesWithA'){
             taskA = slots.Task_A.value.interpretedValue;
         }
