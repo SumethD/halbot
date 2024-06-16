@@ -8,7 +8,7 @@ The frontend is deployed to AWS Amplify automatically on each push.
 Some may not prefer this, as such these instructions focus on
 how to build the React app into static files for the browser:
 
-1. Run yarn build in the root folder.
+1. Run npm run build in the root folder.
 2. A /dist folder will be created in the root containing the HTML, JS, & CSS for the frontend.
 3. Configure your webserver to serve this /dist folder.
 
